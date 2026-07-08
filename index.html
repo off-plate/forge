@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORGE // GOGGINS PROTOCOL</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>⬡</text></svg>">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">⬡ FORGE<small id="tb-sub">GOGGINS PROTOCOL</small></div>
+  <div class="rt" id="tb-rt"></div>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="mission" id="mission"></div>
+    <div class="holo-stage">
+      <canvas id="holo"></canvas>
+      <div class="ring"></div>
+      <div class="hint">◄ DRAG TO ROTATE 360 ►</div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="sec">
+    <h2>THE TEAM // DECISIONS</h2>
+    <div class="grid g3" id="team"></div>
+  </section>
+
+  <!-- LIFTS -->
+  <section class="sec">
+    <h2>TOP LIFTS // CURRENT ▸ TARGET</h2>
+    <div class="grid g2" id="lifts"></div>
+  </section>
+
+  <!-- DIAGNOSTIC -->
+  <section class="sec">
+    <h2>90-WEEK DIAGNOSTIC // WHERE THE VOLUME WENT</h2>
+    <div class="panel dist" id="dist"><span class="cornr tr"></span><span class="cornr bl"></span></div>
+  </section>
+
+  <!-- GOALS -->
+  <section class="sec">
+    <h2>OBJECTIVES // 30-DAY</h2>
+    <div class="grid g4" id="goals"></div>
+  </section>
+
+  <!-- CALLUS -->
+  <section class="sec">
+    <h2>THE CALLUS PROTOCOL // DAILY, IT CLIMBS</h2>
+    <div class="panel" id="callus"><span class="cornr tr"></span><span class="cornr bl"></span></div>
+  </section>
+
+  <!-- WEEK -->
+  <section class="sec">
+    <h2>WEEKLY TEMPLATE // 4 GYM + 1 ENGINE</h2>
+    <div class="grid g3" id="week"></div>
+  </section>
+
+  <!-- PHASES -->
+  <section class="sec">
+    <h2>30-DAY ESCALATION</h2>
+    <div class="grid g4" id="phases"></div>
+  </section>
+
+  <div class="foot" id="foot"></div>
+</div>
+
+<script src="data.js"></script>
+<script type="module">
+import { initHologram } from './hologram.js';
+const D = window.DATA;
+const $ = (s) => document.querySelector(s);
+const el = (h) => { const t=document.createElement('template'); t.innerHTML=h.trim(); return t.content.firstChild; };
+const corners = '<span class="cornr tr"></span><span class="cornr bl"></span>';
+
+// topbar + mission
+$('#tb-sub').textContent = D.meta.subtitle;
+$('#tb-rt').innerHTML = `ATHLETE <b>${D.meta.athlete}</b> · BLOCK ${D.meta.block} · ${D.meta.generated}<br>
+  ${D.meta.stats.weight_kg}KG · BF ${D.meta.stats.bodyfat_est} · CLEAN ${D.meta.stats.clean_days}D <span class="blink">▮</span>`;
+$('#mission').innerHTML = `
+  <div class="code">MISSION // ${D.meta.block}</div>
+  <h1>${D.mission.codename}</h1>
+  <p class="theme">${D.mission.theme}</p>
+  <div class="creed">"${D.mission.creed}"</div>`;
+
+// team
+$('#team').append(...D.team.map(c => el(`
+  <div class="panel coach ${c.accent}">${corners}
+    <div class="chd"><div class="name">${c.name}</div></div>
+    <div class="role">${c.role}</div>
+    <div class="verdict">${c.verdict}</div>
+    <ul>${c.decisions.map(d=>`<li>${d}</li>`).join('')}</ul>
+    <div class="nn">NON-NEGOTIABLE // <span>${c.nonneg}</span></div>
+  </div>`)));
+
+// lifts + animated bars
+$('#lifts').append(...D.lifts.map(l => {
+  const rng = l.goal - l.start;
+  const pct = Math.max(0, Math.min(100, ((l.current - l.start)/rng)*100));
+  const startPct = 0;
+  return el(`
+  <div class="panel lift">${corners}
+    <div class="lh"><span class="ln">${l.name}</span>
+      <span class="lv"><b>${l.current}</b> / ${l.goal} ${l.unit} · ${l.metric}</span></div>
+    <div class="bar"><div class="grid-ticks"></div>
+      <div class="start" style="left:${startPct}%"></div>
+      <div class="fill" data-w="${pct}"></div></div>
+    <div class="cap"><span>START ${l.start}</span><span>${Math.round(pct)}% TO TARGET</span></div>
+  </div>`);
+}));
+
+// distribution
+$('#dist').innerHTML = corners + D.diagnostic.distribution.map(d=>`
+  <div class="row"><div class="lbl">${d.label}</div>
+    <div class="track"><div class="f ${d.tone}" data-w="${Math.min(100,d.pct*3)}"></div></div>
+    <div class="pc">${d.pct}%</div></div>`).join('')
+  + `<div class="readout">DIAGNOSTIC // ${D.diagnostic.readout} · ${D.diagnostic.training_days} training days, ${D.diagnostic.span}.</div>`;
+
+// goals
+$('#goals').append(...D.goals.map(g => el(`
+  <div class="panel goal ${g.accent}">${corners}
+    <h3>${g.domain}</h3>
+    <ul>${g.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+  </div>`)));
+
+// callus table
+$('#callus').innerHTML = corners + `<table class="callus">
+  <tr><th>DAYS</th><th>COLD</th><th>DEAD HANG</th><th>PLANK</th><th>SILENT ENGINE</th></tr>
+  ${D.callus.map(r=>`<tr><td>${r.days}</td><td>${r.cold}</td><td>${r.hang}</td><td>${r.plank}</td><td>${r.engine}</td></tr>`).join('')}
+</table>`;
+
+// week
+$('#week').append(...D.week.map(w => el(`
+  <div class="panel day ${w.accent==='green'?'green':''}">${corners}
+    <div class="dh"><span class="dn">${w.day}</span><span class="dt">${w.tag}</span></div>
+    <div class="dsub">${w.title}</div>
+    <ul>${w.blocks.map(b=>`<li>${b.replace('// PRIORITY','<b style="color:var(--amber)">// PRIORITY</b>')}</li>`).join('')}</ul>
+  </div>`)));
+
+// phases
+$('#phases').append(...D.phases.map(p => el(`
+  <div class="panel phase">${corners}
+    <div class="pw">${p.wk}</div><div class="psub">${p.sub}</div>
+    <div class="kv"><span>ZONE-2</span><b>${p.z2}</b></div>
+    <div class="kv"><span>RUN</span><b>${p.run}</b></div>
+    <div class="kv"><span>INTERVALS</span><b>${p.intervals}</b></div>
+    <div class="kv"><span>CALLUS</span><b>${p.callus}</b></div>
+  </div>`)));
+
+$('#foot').textContent = `FORGE // ${D.meta.athlete} // ${D.mission.creed}`;
+
+// animate bars when visible
+const io = new IntersectionObserver((es)=>es.forEach(e=>{
+  if(e.isIntersecting){ e.target.querySelectorAll('.fill,.f').forEach(f=>f.style.width=f.dataset.w+'%');
+    io.unobserve(e.target);} }),{threshold:.3});
+document.querySelectorAll('.bar,.dist').forEach(b=>io.observe(b));
+
+// hologram
+try { initHologram($('#holo'), $('.holo-stage')); }
+catch(err){ console.error(err); $('.holo-stage').innerHTML='<div class="hint" style="position:static;padding:40px">HOLOGRAM OFFLINE · WEBGL REQUIRED</div>'; }
+</script>
+</body>
+</html>
