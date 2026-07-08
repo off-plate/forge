@@ -50,6 +50,21 @@ section{margin-bottom:38px;scroll-margin-top:64px}
 .grid{display:grid;gap:14px}
 .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
 
+/* week toggle + blurb + arc */
+.wktoggle{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.wktoggle button{font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;padding:9px 16px;border-radius:10px;
+  border:1px solid var(--line);background:var(--card);color:var(--muted)}
+.wktoggle button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.wkblurb{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.arc{margin-top:14px;padding:16px 18px}
+.arc .arc-h{font-weight:700;font-size:14px;margin-bottom:10px}
+.arc .arc-row{display:grid;grid-template-columns:110px 1fr 1fr;gap:12px;padding:9px 0;border-top:1px solid var(--line2);font-size:12.5px;align-items:baseline}
+.arc .arc-row:first-of-type{border-top:0}
+.arc .wk{font-weight:700;color:var(--accent)}
+.arc .ac .lbl{font-size:10px;font-weight:700;color:var(--faint);letter-spacing:.04em;display:block}
+.cal .cell .d b{color:var(--accent)}
+@media(max-width:760px){.arc .arc-row{grid-template-columns:1fr;gap:3px}}
+
 /* day cards */
 .day{overflow:hidden}
 .day .dhead{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;user-select:none}

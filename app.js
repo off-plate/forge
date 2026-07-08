@@ -13,35 +13,58 @@
   $('#h-approve').innerHTML = `✓ ${D.meta.approvedBy}`;
   $('#foot').innerHTML = `"${D.meta.creed}"<br>Block ${D.meta.block} · updated ${D.meta.generated}`;
 
-  // ---- week cards ----
-  const tagName = {excite:"EXCITE",grind:"GRIND",steady:"STEADY",light:"LIGHT",rest:"REST"};
-  const wk = $('#week');
-  D.week.forEach((d,i)=>{
-    const rows = d.exercises.map(e=>`
-      <tr>
-        <td class="name">${e.name}${e.tag?`<span class="pill ${e.tag==='void'?'void':''}">${e.tag}</span>`:''}
-          ${e.sub?`<small>${e.sub}</small>`:''}
-          ${e.wu?`<div class="wu">↑ ${e.wu}</div>`:''}</td>
-        <td class="prescr">${e.prescr}</td>
-      </tr>`).join('');
-    const card = el(`
-      <div class="card day ${d.kind} ${i===0?'open':''}">
-        <div class="dhead">
-          <span class="tagdot"></span>
-          <span class="dtitle">${d.title}</span>
-          <span class="dkind">${d.tag}</span>
-          <span class="chev">▸</span>
-        </div>
-        <div class="dbody">
-          ${d.why?`<p class="why">${d.why}</p>`:''}
-          ${d.warmup?`<p class="wu" style="font-size:12px;color:var(--steel);margin:0 0 10px">${d.warmup}</p>`:''}
-          <table class="ex"><thead><tr><th>Exercise</th><th>Prescription</th></tr></thead><tbody>${rows}</tbody></table>
-        </div>
-      </div>`);
-    card.querySelector('.dhead').addEventListener('click',()=>card.classList.toggle('open'));
-    wk.appendChild(card);
+  // ---- week toggle + cards ----
+  const plan = $('#plan'), wk = $('#week');
+  const toggle = el(`<div class="wktoggle"></div>`);
+  Object.keys(D.weeks).forEach(k=>{
+    const b = el(`<button data-k="${k}">${D.weeks[k].name} · ${D.weeks[k].tag}</button>`);
+    b.addEventListener('click',()=>renderWeek(k));
+    toggle.appendChild(b);
   });
-  $('#plan-note').textContent = "2 excite days (Mon/Wed) · 2 grind days (Tue/Sat). Tap a day to expand.";
+  const blurb = el(`<p class="wkblurb"></p>`);
+  plan.insertBefore(toggle, wk);
+  plan.insertBefore(blurb, wk);
+
+  function renderWeek(k){
+    [...toggle.children].forEach(b=>b.classList.toggle('on',b.dataset.k===k));
+    blurb.textContent = D.weeks[k].blurb;
+    wk.innerHTML='';
+    D.weeks[k].days.forEach((d,i)=>{
+      const rows = d.exercises.map(e=>`
+        <tr>
+          <td class="name">${e.name}${e.tag?`<span class="pill ${e.tag==='void'?'void':''}">${e.tag}</span>`:''}
+            ${e.sub?`<small>${e.sub}</small>`:''}
+            ${e.wu?`<div class="wu">↑ ${e.wu}</div>`:''}</td>
+          <td class="prescr">${e.prescr}</td>
+        </tr>`).join('');
+      const card = el(`
+        <div class="card day ${d.kind} ${i===0?'open':''}">
+          <div class="dhead">
+            <span class="tagdot"></span>
+            <span class="dtitle">${d.title}</span>
+            <span class="dkind">${d.tag}</span>
+            <span class="chev">▸</span>
+          </div>
+          <div class="dbody">
+            ${d.why?`<p class="why">${d.why}</p>`:''}
+            ${d.warmup?`<p class="wu" style="font-size:12px;color:var(--steel);margin:0 0 10px">${d.warmup}</p>`:''}
+            <table class="ex"><thead><tr><th>Exercise</th><th>Prescription</th></tr></thead><tbody>${rows}</tbody></table>
+          </div>
+        </div>`);
+      card.querySelector('.dhead').addEventListener('click',()=>card.classList.toggle('open'));
+      wk.appendChild(card);
+    });
+  }
+  renderWeek('A');
+  $('#plan-note').textContent = "Two rotating weeks. Tap a day to expand.";
+
+  // ---- how it grows (4-week arc) ----
+  const arc = el(`<div class="card arc"></div>`);
+  arc.innerHTML = `<div class="arc-h">How the grind grows over 30 days</div>` +
+    D.arc.map(a=>`<div class="arc-row"><div class="wk">${a.wk}</div>
+      <div class="ac"><span class="lbl">RUN</span> ${a.run}</div>
+      <div class="ac"><span class="lbl">CARDIO</span> ${a.cond}</div></div>`).join('');
+  plan.appendChild(arc);
 
   // ---- 30-day calendar ----
   const cal = $('#cal'), DAYS=30;
@@ -56,9 +79,10 @@
     const isRest = type==='rest';
     if(isRest) restTotal++; else sessTotal++;
     const done = checks.has(i);
+    const wl = Math.floor(i/7)%2===0 ? 'A' : 'B';
     const cell = el(`
       <div class="cell ${dt.kind} ${isRest?'rest':''} ${done?'done':''} ${(i+1)===dayNow?'today':''}" data-i="${i}">
-        <span class="d">${i+1}</span><span class="k">${dt.label}</span>
+        <span class="d">${i+1}${isRest?'':` <b>${wl}</b>`}</span><span class="k">${dt.label}</span>
       </div>`);
     if(!isRest){
       cell.addEventListener('click',()=>{
