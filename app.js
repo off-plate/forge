@@ -13,20 +13,24 @@
   $('#h-approve').innerHTML = `✓ ${D.meta.approvedBy}`;
   $('#foot').innerHTML = `"${D.meta.creed}"<br>Block ${D.meta.block} · updated ${D.meta.generated}`;
 
-  // ---- week toggle + cards ----
+  // ---- week cards (single template; toggle only if multiple) ----
   const plan = $('#plan'), wk = $('#week');
-  const toggle = el(`<div class="wktoggle"></div>`);
-  Object.keys(D.weeks).forEach(k=>{
-    const b = el(`<button data-k="${k}">${D.weeks[k].name} · ${D.weeks[k].tag}</button>`);
-    b.addEventListener('click',()=>renderWeek(k));
-    toggle.appendChild(b);
-  });
+  const wkeys = Object.keys(D.weeks);
+  let toggle = null;
+  if(wkeys.length > 1){
+    toggle = el(`<div class="wktoggle"></div>`);
+    wkeys.forEach(k=>{
+      const b = el(`<button data-k="${k}">${D.weeks[k].name} · ${D.weeks[k].tag}</button>`);
+      b.addEventListener('click',()=>renderWeek(k));
+      toggle.appendChild(b);
+    });
+    plan.insertBefore(toggle, wk);
+  }
   const blurb = el(`<p class="wkblurb"></p>`);
-  plan.insertBefore(toggle, wk);
   plan.insertBefore(blurb, wk);
 
   function renderWeek(k){
-    [...toggle.children].forEach(b=>b.classList.toggle('on',b.dataset.k===k));
+    if(toggle) [...toggle.children].forEach(b=>b.classList.toggle('on',b.dataset.k===k));
     blurb.textContent = D.weeks[k].blurb;
     wk.innerHTML='';
     D.weeks[k].days.forEach((d,i)=>{
@@ -56,32 +60,38 @@
     });
   }
   renderWeek('A');
-  $('#plan-note').textContent = "Two rotating weeks. Tap a day to expand.";
+  $('#plan-note').textContent = "One repeating week. Tap a day to expand.";
 
-  // ---- volume & frequency ----
-  const wf = D.frequencyWhy;
-  $('#why-freq').innerHTML = `<div style="font-weight:700;font-size:15px;margin-bottom:10px">${wf.head}</div>`
-    + wf.body.map(p=>`<p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:9px">${p}</p>`).join('');
-  $('#vol-table').innerHTML = `<div style="font-weight:700;font-size:15px;margin-bottom:12px">Weekly sets per muscle</div>`
-    + D.volume.map(v=>`
-      <div class="cp" style="padding:9px 0">
+  // ---- the calls (research verdicts + volume table) ----
+  const cg = $('#calls-grid');
+  const volTable = `<div style="margin-top:10px">` + D.volume.map(v=>`
+      <div class="cp" style="padding:8px 0">
         <div class="txt" style="flex:1"><div class="t" style="${v.hot?'color:var(--accent)':''}">${v.m}</div></div>
         <div class="bignum" style="font-size:15px;${v.hot?'color:var(--accent)':''}">${v.sets}${typeof v.sets==='number'?' sets':''}</div>
-        <div class="when" style="color:var(--muted);min-width:52px;text-align:right">${v.freq}</div>
-      </div>`).join('');
+        <div class="when" style="color:var(--muted);min-width:60px;text-align:right">${v.freq}</div>
+      </div>`).join('') + `</div>`;
+  D.calls.forEach(c=>{
+    cg.appendChild(el(`
+      <div class="card call" style="padding:16px 18px">
+        <div class="ct"><span class="cq">${c.t}</span><span class="cv">${c.verdict}</span></div>
+        ${c.body.map(p=>`<p>${p}</p>`).join('')}
+        ${c.table?volTable:''}
+        <div class="csrc">${c.src}</div>
+      </div>`));
+  });
 
   // ---- how it grows (4-week arc) ----
   const arc = el(`<div class="card arc"></div>`);
-  arc.innerHTML = `<div class="arc-h">How the grind grows over 30 days</div>` +
+  arc.innerHTML = `<div class="arc-h">How the block grows, week by week</div>` +
     D.arc.map(a=>`<div class="arc-row"><div class="wk">${a.wk}</div>
-      <div class="ac"><span class="lbl">RUN</span> ${a.run}</div>
-      <div class="ac"><span class="lbl">CARDIO</span> ${a.cond}</div></div>`).join('');
+      <div class="ac"><span class="lbl">IRON</span> ${a.iron}</div>
+      <div class="ac"><span class="lbl">ENGINE</span> ${a.engine}</div></div>`).join('');
   plan.appendChild(arc);
 
   // ---- 30-day calendar ----
   const cal = $('#cal'), DAYS=30;
   const checks = new Set(store.get('cal',[]));
-  const startDate = new Date(D.meta.generated+'T00:00:00');
+  const startDate = new Date((D.meta.start||D.meta.generated)+'T00:00:00');
   const today = new Date();
   const dayNow = Math.floor((today - startDate)/86400000)+1;
   let restTotal=0, sessTotal=0;
@@ -91,10 +101,9 @@
     const isRest = type==='rest';
     if(isRest) restTotal++; else sessTotal++;
     const done = checks.has(i);
-    const wl = Math.floor(i/7)%2===0 ? 'A' : 'B';
     const cell = el(`
       <div class="cell ${dt.kind} ${isRest?'rest':''} ${done?'done':''} ${(i+1)===dayNow?'today':''}" data-i="${i}">
-        <span class="d">${i+1}${isRest?'':` <b>${wl}</b>`}</span><span class="k">${dt.label}</span>
+        <span class="d">${i+1}</span><span class="k">${dt.label}</span>
       </div>`);
     if(!isRest){
       cell.addEventListener('click',()=>{
@@ -107,11 +116,12 @@
   }
   function updateProgress(){
     const done=[...checks].filter(i=>D.weekPattern[i%7]!=='rest').length;
+    const floor=D.meta.floor||12;
     $('#p-frac').textContent = `${done} / ${sessTotal}`;
     $('#p-fill').style.width = Math.round(done/sessTotal*100)+'%';
     const floorEl=$('#p-floor');
-    floorEl.textContent = `${done} / 12 ${done>=12?'✓':''}`;
-    floorEl.style.color = done>=12 ? 'var(--good)' : (done<6?'var(--accent)':'var(--ink)');
+    floorEl.textContent = `${done} / ${floor} ${done>=floor?'✓':''}`;
+    floorEl.style.color = done>=floor ? 'var(--good)' : (done<floor/2?'var(--accent)':'var(--ink)');
   }
   updateProgress();
 
@@ -154,7 +164,7 @@
   const n = D.nutrition;
   $('#nut-head').textContent = n.head;
   $('#nutrition-card').innerHTML =
-    `<div class="rule"><span class="ic">◆</span><div><b>Protein ${n.protein}/day</b> · <b>Calorie floor ${n.calFloor}</b> · <b>Water ${n.water}</b></div></div>`
+    `<div class="rule"><span class="ic">◆</span><div><b>Protein ${n.protein}/day</b> · <b>Calories ${n.calFloor}</b> · <b>Water ${n.water}</b></div></div>`
     + n.rules.map(r=>`<div class="rule"><span class="ic">→</span><div>${r}</div></div>`).join('');
 
   // ---- team ----

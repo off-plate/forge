@@ -1,251 +1,294 @@
-/* FORGE — 30-day hybrid plan. 4-day Push/Pull, EVERY muscle trained 2x/week (MPS is ~48h, 2x beats 1x).
-   Two rotating weeks for variety. Exact weight on every lift. Conditioning = stair / air bike / run only. */
-
-// ---- shared conditioning / run / rest days ----
-const COND_STAIR = { id:"cond", title:"Conditioning · Stairmaster", kind:"grind", tag:"GRIND",
-  why:"Engine day. Steady aerobic base that won't touch your lifting recovery. This is the deposit.",
-  warmup:"",
-  exercises:[
-    { name:"Stairmaster", sub:"steady, conversational (talk in short sentences, HR ~135)", prescr:"35 minutes · level 7-8" },
-    { name:"Dead Hang (finisher)", sub:"grip + spine decompress", prescr:"3 sets · hold as long as you can" },
-  ] };
-const COND_BIKE = { id:"cond", title:"Conditioning · Air Bike Intervals", kind:"grind", tag:"GRIND",
-  why:"Short and savage. Trains the willingness to go one more, and it's over fast.",
-  warmup:"",
-  exercises:[
-    { name:"Air Bike Intervals", sub:"the sprint should leave you gasping", prescr:"Warm up 5 min. Then 30 sec ALL OUT, 90 sec easy. Repeat 8 times. Cool down 4 min. (~24 min.)" },
-    { name:"Dead Hang (finisher)", sub:"grip", prescr:"3 sets · hold as long as you can" },
-  ] };
-const RUN_A = { id:"run", title:"Run · Weekend Base", kind:"grind", tag:"GRIND",
-  why:"Off the machine. This is the run that builds the December engine. Run/walk protects the hip and lungs.",
-  warmup:"Brisk walk 5 minutes first.",
-  exercises:[ { name:"Run / Walk", sub:"easy, HR under 150. Hip complains? add walking", prescr:"Run 4 minutes, walk 1 minute. Repeat 6 times. (30 minutes total.)" } ] };
-const RUN_B = { id:"run", title:"Run · Weekend Base", kind:"grind", tag:"GRIND",
-  why:"A little longer than Week A. Same rule: easy effort, protect the hip.",
-  warmup:"Brisk walk 5 minutes first.",
-  exercises:[ { name:"Run / Walk", sub:"easy effort, HR under 150", prescr:"Run 5 minutes, walk 1 minute. Repeat 6 times. (36 minutes total.)" } ] };
-const REST_DAY = { id:"rest", title:"Rest · Reset", kind:"rest", tag:"REST",
-  why:"Recovery is training. Hip care, easy movement, reset.",
-  warmup:"",
-  exercises:[
-    { name:"Mobility + hip care", sub:"glute / ham / quad stretch, back-extension to neutral", prescr:"15 minutes" },
-    { name:"Easy walk", sub:"optional", prescr:"20-30 minutes" },
-  ] };
+/* FORGE data — GROUNDWORK block. Built 2026-07-09 from 437 logged Hevy workouts
+   + three independent research briefs (strength / engine / body comp).
+   Every weight anchored to the log. Every claim cited. update_forge.py rewrites
+   the goals between the GOALS markers on each hevy-sync. */
 
 window.DATA = {
+
   meta: {
-    athlete: "MICHAEL", block: "01", generated: "2026-07-09",
-    codename: "BUILD THE FLOOR",
-    oneLiner: "4-day Push/Pull. Every muscle trained twice a week, because it recovers in ~48h, not a week. Two rotating weeks so it never gets stale.",
-    approvedBy: "Approved by Goggins (Lead) · designed with Nippard (physique) + Nick Bare (engine)",
-    creed: "Feelings don't get a vote. I bank today's deposit, I go one more, the streak stays alive.",
+    codename: "GROUNDWORK",
+    oneLiner: "4 lifts + 3 climbs a week. Bench 100, deadlift 200, a 180-minute engine, abs via the kitchen.",
+    approvedBy: "Built from 437 logged workouts + 3 research briefs",
+    creed: "Easy days easy. Heavy days heavy. Meals eaten. Every day logged.",
+    block: "1 · Jul 13 to Aug 11",
+    generated: "2026-07-09",
+    start: "2026-07-13",
+    floor: 20
   },
 
   dayTypes: {
-    push: { label:"Push", kind:"excite" },
-    pull: { label:"Pull", kind:"excite" },
-    cond: { label:"Conditioning", kind:"grind" },
-    run:  { label:"Run", kind:"grind" },
-    rest: { label:"Rest", kind:"rest" },
+    pushA: { label: "Bench Heavy",  kind: "excite" },
+    eng:   { label: "Engine + Core", kind: "grind" },
+    pull:  { label: "Pull Volume",  kind: "excite" },
+    pushB: { label: "Bench Volume", kind: "excite" },
+    rest:  { label: "Rest",         kind: "rest" },
+    dl:    { label: "Deadlift Day", kind: "excite" },
+    long:  { label: "Long Climb",   kind: "grind" }
   },
-  weekPattern: ["push","pull","cond","push","pull","run","rest"],
-
-  // ---- the why (answers "why 2x, why not a bro split") ----
-  frequencyWhy:{
-    head:"Why every muscle 2× a week",
-    body:[
-      "Muscle protein synthesis, the actual growth signal, is elevated for roughly 24-48 hours after you train a muscle, then it's back to baseline. Training a muscle once a week leaves ~5 days doing nothing.",
-      "The research is settled: training a muscle twice a week beats once a week for growth when volume is equal (Schoenfeld meta-analysis). That's why a Push/Pull split beats the old chest-and-triceps-once-a-week bro split, you get two growth windows instead of one.",
-      "Biceps recover fast and handle 2-3× a week easily. One hammer curl per rotation is nothing. The sweet spot is 10-20 hard sets per muscle per week; biceps sit at 12-16.",
-      "So this plan is 4 lifting days: Push, Pull, Push, Pull. Chest, back, delts, biceps, triceps and the hinge all get hit twice, spaced ~48-72h apart. Conditioning fills the other days.",
-    ],
-  },
-
-  // ---- weekly sets per muscle (the proof) ----
-  volume:[
-    { m:"Chest", sets:13, freq:"2×" },
-    { m:"Back / Lats", sets:14, freq:"2×" },
-    { m:"Side Delts", sets:12, freq:"2-3×", hot:true },
-    { m:"Rear Delts", sets:12, freq:"3-4×", hot:true },
-    { m:"Biceps", sets:12, freq:"2×", hot:true },
-    { m:"Triceps", sets:9, freq:"2×" },
-    { m:"Hinge / Hams", sets:7, freq:"2×" },
-    { m:"Legs / Engine", sets:"stair + run", freq:"3×/wk" },
-  ],
+  weekPattern: ["pushA", "eng", "pull", "pushB", "rest", "dl", "long"],
 
   weeks: {
     A: {
-      name:"Week A", tag:"STRENGTH",
-      blurb:"Heavier, lower reps, drive the numbers. Push/Pull/Push/Pull hits everything twice. Stairmaster is the grind.",
-      days:[
-        { id:"push", title:"Push 1 · Chest-heavy", kind:"excite", tag:"EXCITE",
-          why:"Heavy incline and bench, plus side/rear delts and triceps. First of two push days this week.",
-          warmup:"Warm up ONLY here. Incline DB: 15kg × 8, then 25kg × 5. Bench: one set 40kg × 3. Then working sets. Nothing after gets warmup sets.",
-          exercises:[
-            { name:"Incline Dumbbell Press", sub:"your #1 press", prescr:"4 sets × 6-8 · 32.5 kg", wu:"warm up here" },
-            { name:"Flat Barbell Bench", sub:"drives the 100kg goal", prescr:"3 sets × 5 · 60 kg", wu:"1 warm-up set" },
-            { name:"Single-Arm Cable Lateral Raise", sub:"SIDE DELT", prescr:"4 sets × 12-15 · 7.5 kg each arm", tag:"priority" },
-            { name:"Cable Rear-Delt Fly", sub:"REAR DELT", prescr:"3 sets × 15-20 · 7.5 kg", tag:"void" },
-            { name:"Triceps Pushdown", sub:"", prescr:"3 sets × 10-12 · 27.5 kg" },
-            { name:"Overhead Cable Triceps Extension", sub:"long head", prescr:"2 sets × 12-15" },
-          ] },
-        { id:"pull", title:"Pull 1 · Vertical + Hinge + Biceps", kind:"excite", tag:"EXCITE",
-          why:"Trap-bar hinge, pull-ups toward 10, lat width, and real bicep volume. First of two pull days.",
-          warmup:"Warm up ONLY here. Trap-Bar: 60kg × 5, then 100kg × 3. Then working sets. Nothing after gets warmup sets.",
-          exercises:[
-            { name:"Trap-Bar Deadlift", sub:"HINGE — neutral spine, hip-led, stop on any pinch", prescr:"4 sets × 5 · 130 kg", wu:"warm up here", tag:"void" },
-            { name:"Weighted / Band Pull-Up", sub:"toward 10 clean", prescr:"4 sets × 5-6 · add weight or 16 kg band", tag:"priority" },
-            { name:"Straight-Arm Lat Pulldown", sub:"your #1 lift · lat width", prescr:"3 sets × 12-15 · 30 kg" },
-            { name:"Incline Dumbbell Curl", sub:"BICEPS — stretched, long head", prescr:"3 sets × 10-12 · 12.5 kg", tag:"priority" },
-            { name:"Hammer Curl (Cable)", sub:"BICEPS — brachialis, arm thickness", prescr:"3 sets × 12-15 · 20 kg", tag:"priority" },
-            { name:"Face Pull", sub:"REAR DELT", prescr:"3 sets × 15-20 · 20 kg", tag:"void" },
-          ] },
-        COND_STAIR,
-        { id:"push", title:"Push 2 · Shoulder-heavy", kind:"excite", tag:"EXCITE",
-          why:"Second push of the week, shifted to shoulder pressing + a chest pump. Different from Push 1 on purpose.",
-          warmup:"Warm up ONLY here. Smith Shoulder Press: 20kg × 8, then 40kg × 5. Then working sets. Nothing after gets warmup sets.",
-          exercises:[
-            { name:"Seated Smith Shoulder Press", sub:"delts, pressing strength", prescr:"4 sets × 8-10 · 35 kg", wu:"warm up here" },
-            { name:"Machine Chest Press", sub:"chest, safe to push near failure", prescr:"3 sets × 10-12 · 55 kg" },
-            { name:"Single-Arm Cable Lateral Raise", sub:"SIDE DELT — 2nd hit of week", prescr:"4 sets × 15-20 · 7.5 kg each arm", tag:"priority" },
-            { name:"Chest Fly (Machine)", sub:"chest 2nd hit", prescr:"3 sets × 12-15 · 20 kg" },
-            { name:"Cable Rear-Delt Fly", sub:"REAR DELT", prescr:"3 sets × 15-20 · 7.5 kg", tag:"void" },
-            { name:"Triceps Pushdown", sub:"", prescr:"3 sets × 12-15 · 25 kg" },
-          ] },
-        { id:"pull", title:"Pull 2 · Horizontal + Biceps", kind:"excite", tag:"EXCITE",
-          why:"Second pull: horizontal rowing for back thickness, RDL for hamstrings, and biceps again (heavier this time).",
-          warmup:"Warm up ONLY here. Seated Row: one light set 50kg × 8. RDL later needs no ramp (already warm). Then working sets.",
-          exercises:[
-            { name:"Seated Cable Row (V-grip)", sub:"back thickness", prescr:"4 sets × 8-10 · 80 kg", wu:"1 warm-up set" },
-            { name:"Reverse-Grip Lat Pulldown", sub:"your favorite · lats + biceps", prescr:"3 sets × 10-12 · 55 kg" },
-            { name:"Romanian Deadlift", sub:"HINGE — hamstrings, flat back, do NOT round", prescr:"3 sets × 10 · 70 kg", tag:"void" },
-            { name:"EZ-Bar Curl", sub:"BICEPS — heavy, the mass builder", prescr:"3 sets × 8-10 · 25 kg", tag:"priority" },
-            { name:"Preacher Hammer Curl", sub:"BICEPS — peak + brachialis", prescr:"3 sets × 12 · 12.5 kg", tag:"priority" },
-            { name:"Face Pull", sub:"REAR DELT", prescr:"3 sets × 15-20 · 20 kg", tag:"void" },
-          ] },
-        RUN_A,
-        REST_DAY,
-      ],
-    },
-    B: {
-      name:"Week B", tag:"PUMP & ENGINE",
-      blurb:"Higher reps, different exercises, more conditioning variety. Still Push/Pull/Push/Pull, everything twice. Air bike replaces the stair grind.",
-      days:[
-        { id:"push", title:"Push 1 · Chest Pump", kind:"excite", tag:"EXCITE",
-          why:"Same muscles as Week A but higher reps and a pump focus. Smith incline + cable work.",
-          warmup:"Warm up ONLY here. Incline Smith: 20kg × 8, then 40kg × 5. Then working sets.",
-          exercises:[
-            { name:"Incline Smith Press", sub:"volume, controlled", prescr:"4 sets × 8-10 · 45 kg", wu:"warm up here" },
-            { name:"Cable Fly Crossover", sub:"constant tension", prescr:"3 sets × 15 · 12.5 kg" },
-            { name:"Dumbbell Lateral Raise", sub:"SIDE DELT", prescr:"4 sets × 15-20 · 10 kg", tag:"priority" },
-            { name:"Reverse Pec-Deck", sub:"REAR DELT", prescr:"3 sets × 15-20 · 20 kg", tag:"void" },
-            { name:"Overhead Cable Triceps Extension", sub:"", prescr:"3 sets × 12-15" },
-            { name:"Machine Chest Press", sub:"chest 2nd movement", prescr:"3 sets × 12-15 · 55 kg" },
-          ] },
-        { id:"pull", title:"Pull 1 · Vertical + Biceps", kind:"excite", tag:"EXCITE",
-          why:"High-rep pull-up volume, unilateral lat work, and stretched bicep curls.",
-          warmup:"Warm up ONLY here. One light lat pulldown set, then working sets.",
-          exercises:[
-            { name:"Band Pull-Up (high rep)", sub:"volume toward 10", prescr:"4 sets × 8-10 · 16 kg band", tag:"priority" },
-            { name:"One-Arm Lat Pulldown", sub:"unilateral lat, you PR'd it", prescr:"3 sets × 12 · 22.5 kg" },
-            { name:"Straight-Arm Lat Pulldown", sub:"your #1 lift", prescr:"3 sets × 15 · 27.5 kg" },
-            { name:"Incline Dumbbell Curl", sub:"BICEPS — stretched", prescr:"3 sets × 12-15 · 10 kg", tag:"priority" },
-            { name:"Cable Curl", sub:"BICEPS — constant tension", prescr:"3 sets × 15 · 15 kg", tag:"priority" },
-            { name:"Face Pull", sub:"REAR DELT", prescr:"3 sets × 15-20 · 20 kg", tag:"void" },
-          ] },
-        COND_BIKE,
-        { id:"push", title:"Push 2 · Shoulder Pump", kind:"excite", tag:"EXCITE",
-          why:"Second push, machine shoulder press and delt-heavy pump. Fast and full.",
-          warmup:"Warm up ONLY here. Machine Shoulder Press: one light set, then working sets.",
-          exercises:[
-            { name:"Machine Shoulder Press", sub:"delts", prescr:"4 sets × 10-12 · pick a 12-rep weight", wu:"1 warm-up set" },
-            { name:"Incline Dumbbell Press", sub:"chest, higher rep", prescr:"3 sets × 10-12 · 27.5 kg" },
-            { name:"Dumbbell Lateral Raise", sub:"SIDE DELT — 2nd hit", prescr:"4 sets × 15-20 · 10 kg", tag:"priority" },
-            { name:"Cable Fly Crossover", sub:"chest pump", prescr:"3 sets × 15 · 12.5 kg" },
-            { name:"Reverse Pec-Deck", sub:"REAR DELT", prescr:"3 sets × 15-20 · 20 kg", tag:"void" },
-            { name:"Triceps Pushdown", sub:"", prescr:"3 sets × 15 · 22.5 kg" },
-          ] },
-        { id:"pull", title:"Pull 2 · Horizontal + Biceps", kind:"excite", tag:"EXCITE",
-          why:"Rowing for thickness, a hinge, and biceps a second time this week. High-rep burn.",
-          warmup:"Warm up ONLY here. One light row set, then working sets.",
-          exercises:[
-            { name:"Seated Cable Row (V-grip)", sub:"back thickness, higher rep", prescr:"4 sets × 12-15 · 65 kg", wu:"1 warm-up set" },
-            { name:"Reverse-Grip Lat Pulldown", sub:"your favorite", prescr:"3 sets × 12 · 50 kg" },
-            { name:"Kettlebell Swing", sub:"HINGE — hip snap, hamstrings + conditioning", prescr:"4 sets × 15 · 24 kg", tag:"void" },
-            { name:"EZ-Bar Curl", sub:"BICEPS", prescr:"3 sets × 12 · 20 kg", tag:"priority" },
-            { name:"Preacher Hammer Curl", sub:"BICEPS — brachialis", prescr:"3 sets × 15 · 12.5 kg", tag:"priority" },
-            { name:"Face Pull", sub:"REAR DELT", prescr:"3 sets × 15-20 · 20 kg", tag:"void" },
-          ] },
-        RUN_B,
-        REST_DAY,
-      ],
-    },
+      name: "The Week",
+      tag: "one template, rising numbers",
+      blurb: "One repeating week. Progression is built into the rules: +2.5 kg bench and +5 kg deadlift when top sets land clean, +10-15% on the long climb. Week 4 of every month polarizes: maintenance calories, first Norwegian 4x4, shorter long climb. Nothing to decide on the day, just execute.",
+      days: [
+        {
+          title: "Monday · Bench Heavy",
+          tag: "IRON", kind: "excite",
+          why: "Bench twice a week is the fastest evidence-backed route back to 78 and on toward 100 (pressing rewards frequency most, Grgic 2018). Heavy day comes first in the week, freshest.",
+          warmup: "Full ramp on bench only: bar x10, 40 x5, 50 x3, 55 x1 primer, then the top set. Everything after bench: one lighter feeder set, no full ramps.",
+          exercises: [
+            { name: "Bench Press (Barbell)", sub: "top set, then backoffs. +2.5 kg when 5 land clean at RIR 2", prescr: "60 x5 @RIR2 + 3x6 @50" },
+            { name: "Incline Bench Press (Smith)", sub: "your 74-session favorite, e1RM already 80", prescr: "3 x6-8 @60" },
+            { name: "Chest Press (Machine)", sub: "hypertrophy feeder", prescr: "2 x12 @50" },
+            { name: "Triceps Pushdown", sub: "lockout is triceps-limited", prescr: "3 x10-12 @27.5" },
+            { name: "Lateral Raise (cable or DB)", sub: "side delts, visual lever #1", prescr: "3 x12-15 @7.5-10" },
+            { name: "StairMaster Z2 (optional)", sub: "easy only, talk-test pace", prescr: "20-25 min", tag: "engine" }
+          ]
+        },
+        {
+          title: "Tuesday · Engine + Core",
+          tag: "ENGINE", kind: "grind",
+          why: "Zone 2 base: RPE 3-4, 115-135 bpm, full sentences possible. If it feels too easy, it is right (Seiler 80/20). From Week 4 this slot becomes the Norwegian 4x4 interval day. Core here is isometric only, zero spinal flexion: it protects the hip and braces the bar, it does not reveal abs.",
+          warmup: "None needed. Start the climb slow, settle into the zone over 5 minutes.",
+          exercises: [
+            { name: "StairMaster Zone 2", sub: "wk1 30 / wk2 40 / wk3 45 min. Week 4: Norwegian 4x4 instead", prescr: "30-45 min @RPE 3-4", tag: "engine" },
+            { name: "Norwegian 4x4 (from Week 4)", sub: "10 min easy, then 4 min hard (RPE 8-9) + 3 min easy, four rounds, 5 min down", prescr: "wk4+: 4x(4+3) min", tag: "wk4" },
+            { name: "Side Plank", sub: "obliques + QL, waist stays braced not built", prescr: "3 x30-45s / side" },
+            { name: "Dead Bug", sub: "anti-extension, low back pinned flat", prescr: "3 x10 / side" },
+            { name: "Pallof Press", sub: "anti-rotation", prescr: "3 x12 / side" }
+          ]
+        },
+        {
+          title: "Wednesday · Pull Volume",
+          tag: "IRON", kind: "excite",
+          why: "Back is your strongest, best-recovering region and the visual taper (lats are lever #2). RDL opens fresh for hip safety and builds the posterior chain your 14-session deadlift history never did. Light hinge today, heavy pull Saturday: 1.5x pulling, exactly what recovery affords in a deficit.",
+          warmup: "RDL: one ramp set, 60 x8, then work. Pull-ups: one easy band set. Nothing after that.",
+          exercises: [
+            { name: "Romanian Deadlift (Barbell)", sub: "neutral spine, technique first. +2.5-5 kg at top of range", prescr: "3 x8-10 @90 @RIR3" },
+            { name: "Pull Up + Band Assisted", sub: "open fresh, full range", prescr: "4 sets @RIR1" },
+            { name: "Seated Row (Machine)", sub: "you just PRd this, ride it", prescr: "3 x8-10 @70" },
+            { name: "Straight Arm Lat Pulldown", sub: "your #1 exercise, 90 sessions. Lats keep the deadlift bar close", prescr: "3 x12-15 @25" },
+            { name: "Reverse Fly (single arm cable)", sub: "rear delts", prescr: "2 x15 @7.5" },
+            { name: "Hammer Curl (Cable)", sub: "biceps hit 1 of 2", prescr: "3 x10-12 @17.5" }
+          ]
+        },
+        {
+          title: "Thursday · Bench Volume + Delts",
+          tag: "IRON", kind: "excite",
+          why: "Second chest and delt hit inside the 48h growth window. Volume day: RIR 2-3, controlled reps, leave the grinding for Monday. Side delts and upper chest are the top visual levers at your frame: grow the top, the deficit cuts the waist, the ratio does the rest.",
+          warmup: "Bench: bar x10, 40 x5, then straight into work sets. One feeder on the incline, nothing after.",
+          exercises: [
+            { name: "Bench Press (Barbell)", sub: "volume groove. +2.5 kg when all four sets hit 8", prescr: "4 x8 @50 @RIR2-3" },
+            { name: "Incline Bench Press (Dumbbell)", sub: "83 sessions, your #2. Upper chest", prescr: "3 x8-10 @30" },
+            { name: "Seated Shoulder Press (Smith)", sub: "you PRd it this week", prescr: "3 x8-10 @40" },
+            { name: "Chest Fly (Machine)", sub: "stretch under control", prescr: "3 x12-15 @22.5" },
+            { name: "Lateral Raise (cable or DB)", sub: "second side-delt hit", prescr: "3 x15 @7.5" },
+            { name: "Triceps Pushdown (reverse or rope)", sub: "second triceps hit", prescr: "2 x12-15 @17.5" },
+            { name: "StairMaster Z2 (optional)", sub: "easy only", prescr: "20-25 min", tag: "engine" }
+          ]
+        },
+        {
+          title: "Friday · Rest",
+          tag: "REST", kind: "rest",
+          why: "Full rest before the heaviest day of the week. Sleep is a fat-loss lever, not just recovery: dieters sleeping 5.5h lost 55% less fat than at 8.5h on identical calories (Nedeltcheva 2010). 7+ hours tonight is training.",
+          exercises: [
+            { name: "Sleep 7h+", sub: "the cheapest anabolic you own", prescr: "non-negotiable" },
+            { name: "Steps", sub: "deficit that costs zero recovery", prescr: "8-10k" }
+          ]
+        },
+        {
+          title: "Saturday · Deadlift Day",
+          tag: "IRON", kind: "excite",
+          why: "The layup goal, in your freshest 2-hour slot after a rest day. 14 sessions in 90 weeks is why 200 is still far; one honest heavy pull a week is how it gets close (undertrained lifts progress even in a deficit, Helms 2014). Everything here serves the pull: back thickness keeps the bar tight, grip is the classic 200 limiter, leg press is the knee insurance from the squat verdict.",
+          warmup: "Full ramp on deadlift only: 60 x5, 90 x3, 110 x2, 122.5 x1 primer, then top set. Everything after: one feeder set max.",
+          exercises: [
+            { name: "Deadlift (Barbell)", sub: "top set then backoffs. +5 kg when 5 land clean, undertrained lifts jump fast", prescr: "130 x5 @RIR2 + 2x5 @115" },
+            { name: "Seated Cable Row (V-Grip)", sub: "mid-back keeps the bar close", prescr: "3 x10-12 @70" },
+            { name: "Reverse Grip Lat Pulldown", sub: "77 sessions, lat strength", prescr: "3 x8-10 @57.5" },
+            { name: "Leg Press (Machine)", sub: "knee insurance per the squat verdict. Find the 12-rep load week 1, RIR 3", prescr: "3 x12 light", tag: "verdict" },
+            { name: "Hammer Curl (Cable)", sub: "biceps hit 2 of 2", prescr: "3 x12 @17.5" },
+            { name: "Dead Hang", sub: "grip for the 200, you love these anyway", prescr: "2 x max" },
+            { name: "Suitcase Hold", sub: "loaded brace, one side at a time", prescr: "2 x30-40s / side" }
+          ]
+        },
+        {
+          title: "Sunday · Long Climb",
+          tag: "ENGINE", kind: "grind",
+          why: "The durability builder: withstand longer starts here. One long easy climb growing 10-15% per week, 45 toward 90 minutes over eight weeks, 120 as the later stretch. Strictly conversational pace. Put a show on and climb. Ego does not set the pace, the talk test does.",
+          warmup: "First 5 minutes at a crawl, then settle in.",
+          exercises: [
+            { name: "StairMaster Long Zone 2", sub: "wk1 45 / wk2 55 / wk3 70 / wk4 60 min. Never above talk-test pace", prescr: "45-70 min @RPE 3-4", tag: "engine" },
+            { name: "Dead Hang", sub: "decompress after the climb", prescr: "2 x easy" },
+            { name: "Glute + hip stretch", sub: "5 minutes, the hip thanks you", prescr: "5 min" }
+          ]
+        }
+      ]
+    }
   },
 
-  arc:[
-    { wk:"Week 1 (A)", run:"Run 4 min / walk 1 min × 6 (30 min)", cond:"Stairmaster 35 min steady" },
-    { wk:"Week 2 (B)", run:"Run 5 min / walk 1 min × 6 (36 min)", cond:"Air bike: 8 × 30 sec all-out" },
-    { wk:"Week 3 (A)", run:"Run 8 min / walk 1 min × 4 (36 min)", cond:"Stair intervals: 4 × 3 min hard / 2 min easy" },
-    { wk:"Week 4 (B)", run:"Run 40 min continuous (walk only if needed)", cond:"Air bike: 10 × 30 sec all-out" },
+  arc: [
+    { wk: "Week 1", iron: "Bench 60x5, deadlift 130x5, all top sets at RIR 2. Learn the feel, log everything.", engine: "~105 min Z2: Tue 30, optional 25 after a lift, Sun long 45." },
+    { wk: "Week 2", iron: "+2.5 bench / +5 deadlift if week 1 landed clean (62.5 / 135).", engine: "~130 min: Tue 40, appends, Sun long 55." },
+    { wk: "Week 3", iron: "+2.5 / +5 again if earned (65 / 140).", engine: "~150 min: Tue 45, appends, Sun long 70." },
+    { wk: "Week 4", iron: "Hold loads, drop one backoff set. Eat at maintenance ~2800 all week, programmed.", engine: "Polarize ~135 min: first Norwegian 4x4 on Tuesday, Sun long 60 easy." }
+  ],
+
+  calls: [
+    {
+      t: "Squat 100 kg", verdict: "DEFER",
+      body: [
+        "None of your four goals needs it. Deadlift covers hinge and leg strength, the StairMaster hammers quad endurance, and heavy leg strength for endurance economy is delivered by any heavy lift, the deadlift included (Ronnestad & Mujika 2014).",
+        "On a deficit with 4 lifts + 3 climbs, heavy squatting is the most expensive thing you could add for the least return, on a lift you hate.",
+        "Reopened when three triggers are met: eating at maintenance, aerobic base built (~180 min/wk), deadlift stable at 160+. Until then: leg press 3x12 on Saturday is the knee insurance."
+      ],
+      src: "Wilson 2012 · Ronnestad & Mujika 2014 · Vikmoen 2017"
+    },
+    {
+      t: "Stair beats running for your goals", verdict: "KEEP CLIMBING",
+      body: [
+        "Interference lives in eccentric muscle damage. Running caused strength and size losses in the meta-analysis, cycling did not, and stair-climbing is concentric-dominant like cycling. Your preferred tool is also the evidence-backed one.",
+        "2026 umbrella review, 144 studies: recreational concurrent training costs no strength or muscle at all, only explosive power, which you do not train for.",
+        "Rules that keep it free: Zone 2 at talk-test pace (115-135 bpm), lift first on shared days, no hard cardio in the 24h around deadlift day."
+      ],
+      src: "Wilson 2012 · Schumann 2022 · Sports Med umbrella 2026"
+    },
+    {
+      t: "The 95 bench does not exist", verdict: "REBUILD, THEN BUILD",
+      body: [
+        "Peak logged bench: e1RM 80 in April (60x10). Current form: 67, after two four-week gaps. There is not a single logged set near 95.",
+        "Phase 1 is reacquisition: 67 back to ~78 in 6-10 weeks of benching twice weekly. That part is fast.",
+        "78 to 100 is a +28% intermediate build and a ~500 kcal deficit blunts new muscle (Murphy & Koehler 2022). Honest date: e1RM 100 lands in 2027, and it accelerates the day the cut ends. The block target is 72+."
+      ],
+      src: "Murphy & Koehler 2022 · Grgic 2018 · your own log"
+    },
+    {
+      t: "Deadlift 200 is the layup", verdict: "PULL WEEKLY",
+      body: [
+        "14 deadlift sessions in 90 weeks makes this your most undertrained lift: the 160 e1RM came almost for free. Undertrained lifts keep progressing even in a deficit (Helms 2014).",
+        "One heavy top set + backoffs every Saturday, +5 kg jumps when reps land clean. e1RM 200 in 6-12 months is the realistic corridor.",
+        "The limiters at 200 are grip and upper-back tightness, not leg drive. Hence dead hangs, rows, and the suitcase hold on the same day."
+      ],
+      src: "Helms 2014 · Graham & Cleather 2021 (RIR autoregulation)"
+    },
+    {
+      t: "1700-2000 kcal was a crash, not a cut", verdict: "EAT 2400",
+      body: [
+        "Your maintenance at this training load is roughly 2800-3100. Eating 1700-2000 is a 30-45% slash: the same collapse pattern as the energy-drink era, wearing a diet costume.",
+        "2400 kcal, hard floor 2200, still loses ~0.5-0.6 kg/week while protecting the lifts and the eating habit. Every 4th week eats at maintenance ~2800: programmed breaks beat continuous dieting (MATADOR trial, Byrne 2018).",
+        "Protein 180 g/day is the non-negotiable half. If weight drops faster than 0.6 kg/week, add 150-200 kcal: that speed is muscle leaving, not winning."
+      ],
+      src: "Byrne 2018 (MATADOR) · Helms 2014 · Garthe 2011"
+    },
+    {
+      t: "Abs are a kitchen project with a date", verdict: "FEB-APR 2027",
+      body: [
+        "With waist-dominant storage, abs show last: first upper-ab lines around 13-14% bodyfat, which for you means roughly 80-82 kg. At 0.5-0.6 kg/week from 96, that is honestly 6-8 months out. A full six-pack is a 10-14 month project.",
+        "No exercise reveals them: six weeks of daily ab training changed belly fat by exactly nothing in the trial (Vispute 2011). Fat leaves systemically and your waist is biologically last in line (alpha-2 receptor density).",
+        "So the core work in this plan is isometric, hip-safe, and exists to protect the SI joint and brace the deadlift. The mirror is fed by the kitchen, the sleep, and the steps."
+      ],
+      src: "Vispute 2011 · Nedeltcheva 2010 · Helms 2014"
+    },
+    {
+      t: "Every muscle twice a week, volume at MEV+", verdict: "THE TABLE",
+      body: [
+        "In a deficit, recovery is the budget: volumes sit at minimum-effective-plus (RP landmarks), not the old 20-25 sets. Frequency stays at 2x for every visible muscle because 48h growth windows stack better than one weekly blowout.",
+        "Back keeps the most volume: it is your strongest region, it recovers fastest, and it is the taper."
+      ],
+      src: "Schoenfeld 2017 · Israetel/RP volume landmarks",
+      table: true
+    }
+  ],
+
+  volume: [
+    { m: "Chest",        sets: 17,  freq: "2x", hot: false },
+    { m: "Back + lats",  sets: 19,  freq: "2x", hot: true },
+    { m: "Side delts",   sets: 9,   freq: "2x", hot: true },
+    { m: "Upper chest",  sets: 6,   freq: "2x", hot: true },
+    { m: "Biceps",       sets: 6,   freq: "2x", hot: false },
+    { m: "Triceps",      sets: 8,   freq: "2x", hot: false },
+    { m: "Hinge",        sets: 6,   freq: "1.5x", hot: false },
+    { m: "Quads",        sets: "3 + stair", freq: "daily-ish", hot: false },
+    { m: "Core (no flexion)", sets: 11, freq: "2x", hot: false }
   ],
 
   /*GOALS_START*/
   goals: [
-    { name:"Bench e1RM", start:67, goal:73, current:67, unit:"kg", source:"hevy", note:"Reclaim the ground lost in June. 100kg is a December goal.", kind:"accent" },
-    { name:"Deadlift e1RM", start:143, goal:160, current:143, unit:"kg", source:"hevy", note:"Reclaim your 150×2 PR. Trap-bar 130→140. On the 200 track.", kind:"accent" },
-    { name:"Pull-Ups", start:6, goal:10, current:6, unit:"reps", source:"hevy", note:"Strict, or band 16kg down to 8kg.", kind:"accent" },
-    { name:"Continuous Run", start:5, goal:20, current:5, unit:"min", source:"manual", note:"Unbroken, easy, HR under 150.", kind:"steel" },
-    { name:"Stair 20-min Test", start:0, goal:12, current:0, unit:"% floors", source:"manual", note:"+10-15% floors OR same floors at 8-10 bpm lower HR.", kind:"steel" },
-    { name:"Bodyweight", start:96, goal:93, current:96, unit:"kg", source:"manual", note:"Waist beats the scale. Aim ~-2-3cm, strength held.", kind:"good" },
+    { name: "Bench Press e1RM", start: 67, current: 67, goal: 100, unit: "kg", kind: "accent", source: "hevy",
+      note: "Peak was 80 in April. Phase 1: back to 78 by mid-September. The 100 is a 2027 lift and accelerates the day the cut ends. Block target: 72+." },
+    { name: "Deadlift e1RM", start: 143, current: 143, goal: 200, unit: "kg", kind: "accent", source: "hevy",
+      note: "The layup. One heavy pull every Saturday, +5 kg when clean. 160 by September, 200 in 6-12 months." },
+    { name: "Engine Z2", start: 0, current: 0, goal: 180, unit: "min/wk", kind: "steel", source: "hevy",
+      note: "Talk-test pace only. 105 in week 1, 150 by week 3, 180 by autumn. Auto-sums this week's stair minutes from Hevy." },
+    { name: "Longest climb", start: 68, current: 68, goal: 90, unit: "min", kind: "steel", source: "hevy",
+      note: "Grows 10-15% per week from an easy 45. 90 by September, 120 is the later stretch. Knees set the ceiling, not lungs." },
+    { name: "Bodyweight", start: 96, current: 96, goal: 82, unit: "kg", kind: "good", source: "manual",
+      note: "0.5-0.6 kg/week, no faster. First ab lines around 80-82 kg: honestly Feb-Apr 2027. Block marker: 94.5 by Aug 9." }
   ],
   /*GOALS_END*/
 
   checkpoints: [
-    { when:"DAY 15", t:"Bench 57.5-60kg moving clean for reps", d:"Strength holding under the cut" },
-    { when:"DAY 15", t:"Trap-bar 135kg · pull-up +1 rep or band down a level", d:"Hinge and pull trending up" },
-    { when:"DAY 15", t:"Bicep pump + size trending up (both curls progressing)", d:"The frequency fix working" },
-    { when:"DAY 15", t:"12-15 min continuous run · stair HR down", d:"Engine responding" },
-    { when:"DAY 30", t:"Bench e1RM 73+ · Trap-bar 140 for 4×5", d:"Reclaimed and building" },
-    { when:"DAY 30", t:"Pull-ups 9-10 or band at 8kg", d:"Near the 10 goal" },
-    { when:"DAY 30", t:"20-min stair test PR · 20+ min continuous run", d:"Full engine battery" },
-    { when:"DAY 30", t:"Waist re-measure + progress photo", d:"Visual proof" },
+    { t: "Week 1 complete: 6 sessions, ~105 Z2 minutes", d: "The floor is the win. Loads deliberately conservative, log everything.", when: "Jul 19" },
+    { t: "Bench top set 62.5 x5", d: "First +2.5 on the rebuilt groove.", when: "~Jul 26" },
+    { t: "Deadlift top set 140 x5", d: "+10 kg in two weeks. Undertrained lifts move fast.", when: "~Aug 2" },
+    { t: "Long climb reaches 70 minutes", d: "Two thirds of the way to the 90-minute base.", when: "~Aug 2" },
+    { t: "Maintenance week + first Norwegian 4x4", d: "Eat ~2800 for 7 days and hit one interval session. Programmed, not cheating.", when: "Aug 3-9" },
+    { t: "Bodyweight 94.5 or lower", d: "On the 0.5-0.6 kg/week line from 96.", when: "Aug 9" },
+    { t: "Block review: bench e1RM 72+, deadlift e1RM 152+", d: "Auto-checked from Hevy at sync. Then Block 2 loads.", when: "Aug 10" }
   ],
 
   nutrition: {
-    protein:"180-200g", calFloor:"1800", water:"3-3.5L",
-    head:"You cannot out-train a mouth you don't control.",
-    rules:[
-      "Protein first, every meal: ~40-50g × 4 meals. Hit the 180g floor before anything else. Muscle-retention insurance in a deficit.",
-      "Park carbs around training: ~40-60g before and after hard sessions. Lower-carb on rest days so you still cut.",
-      "Calorie floor 1800 (~700-1000 kcal deficit). If lifts or energy crater, float to 2000-2100, never lower.",
-      "Water 3-3.5L/day, add ~0.5-1g sodium before sessions over 40 min or interval day.",
-      "Weigh weekly, adjust only after a 2-week stall.",
-    ],
+    head: "2400 a day, 180 protein, week 4 at maintenance. The abs are a byproduct of not skipping meals for a year.",
+    protein: "180 g",
+    calFloor: "2400 kcal (floor 2200)",
+    water: "3 L",
+    rules: [
+      "Three real meals every day, non-negotiable. A mediocre eaten meal beats a perfect skipped one. This habit is the whole plan.",
+      "Skeleton: tvaroh + oats (40g) / chicken or beef + rice (50g) / eggs or tuna + carbs (40g) / skyr + whey scoop (40g). That is ~180.",
+      "Week 4 of every month: eat at maintenance, ~2800. Programmed diet break (MATADOR trial), not a failure.",
+      "Sleep 7h+. Short sleep cost dieters 55% of their fat loss on identical calories (Nedeltcheva 2010).",
+      "Alcohol parks itself in exactly the waist you are cutting, dose-dependent. Keep it rare.",
+      "8-10k steps daily. The cheapest deficit you own, costs zero recovery.",
+      "Scale check weekly, same morning. Dropping faster than 0.6 kg/week: add 150-200 kcal back."
+    ]
   },
 
   team: [
-    { name:"DAVID GOGGINS", role:"Team Lead · Mind", calls:[
-      "Theme: BUILD THE FLOOR. You have a ceiling, not a floor.",
-      "Never skip a GRIND day (Conditioning, Run). Miss a lift day, make it up.",
-      "Approved the trap-bar hinge. 'Legs = stairmaster only' was fear, not a doctor.",
-      "Track the streak, not the feeling. Log every session, hit the weekly sync.",
-    ] },
-    { name:"THE SCIENTIST", role:"Nippard · Physique", calls:[
-      "Every muscle 2×/week. MPS is ~48h; once a week wastes 5 days. Biceps get 12 sets across 2 pull days, not 1 curl.",
-      "Push/Pull/Push/Pull, not a bro split. Two growth windows per muscle.",
-      "Side + rear delts on every push day + face pulls on every pull day. Your biggest visual gap.",
-      "Warmups: warm up the first lift only, 1-2 sets. Never on every lift.",
-    ] },
-    { name:"NICK BARE", role:"Hybrid · Engine", calls:[
-      "Aerobic base first: stair + bike Zone-2. Conditioning on the non-lifting days.",
-      "Conditioning is stair, air bike, or running. No carries, your call, respected.",
-      "Intervals from week 3 on the stair, week 2 on the bike. Base first.",
-      "Go One More: never negotiate the whole session, only the next rep.",
-    ] },
+    {
+      name: "Strength",
+      role: "Bench 100 / deadlift 200 roadmap",
+      calls: [
+        "Bench 2x weekly, one heavy one volume: pressing rewards frequency most (Grgic 2018)",
+        "Deadlift once heavy plus a light RDL. Two heavy pull days in a deficit is where recovery breaks",
+        "Every load anchored to the log: 60x5 bench, 130x5 pull, +2.5 / +5 double progression",
+        "Bad day protocol: hold the weight, cut one backoff set. RIR beats fixed percentages (Graham & Cleather 2021)"
+      ]
+    },
+    {
+      name: "Engine",
+      role: "Gym-only endurance, stair-first",
+      calls: [
+        "Stair is concentric like cycling: running hurt lifts in the meta-analysis, cycling did not (Wilson 2012)",
+        "Zone 2 = talk test, 115-135 bpm. If it feels too easy it is right (Seiler 80/20)",
+        "Three weeks pure base, then one Norwegian 4x4 per week from week 4 (Helgerud 2007)",
+        "Squat: DEFER on evidence. Leg press 3x12 is the knee insurance until the triggers are met"
+      ]
+    },
+    {
+      name: "Body Comp",
+      role: "Visible abs, honest timeline",
+      calls: [
+        "2400 kcal, 180g protein. The old 1700-2000 was the crash pattern wearing a diet costume",
+        "First ab lines at ~80-82 kg, Feb-Apr 2027. Waist-dominant storage empties last, that is biology not failure",
+        "No exercise reveals abs (Vispute 2011). Core work is for the hip and the bar",
+        "Visual levers ranked: side delts, lats, upper chest. Grow the top, cut the waist, the ratio does the rest"
+      ]
+    }
   ],
 
   approval: {
-    verdict:"Rebuilt around frequency: 4-day Push/Pull, every muscle twice a week, because muscle recovers in ~48h. Biceps now get real volume (12 sets across two pull days), not one token curl. Two rotating weeks keep it fresh, every lift has a weight, conditioning is stair/bike/run only. Excitement is the reward. Consistency is the rent.",
-    signoff:"— Goggins, Team Lead",
-  },
+    verdict: "Three independent research briefs, one plan. Every weight is from your log, every claim is cited, every timeline is honest even where it stings: the 95 bench is not in the log, the abs are a 2027 reveal, the squat is deferred on evidence and not on hate. The Goggins in this plan is not the intervals. It is eating 2400 every single day, climbing at a pace that feels embarrassingly easy, and showing up six times a week for months without an audience. Discipline over intensity.",
+    signoff: "HEAD COACH · approved 2026-07-09 · block starts Monday Jul 13"
+  }
 };
