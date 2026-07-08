@@ -2,164 +2,71 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FORGE // GOGGINS PROTOCOL</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>⬡</text></svg>">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>FORGE — 30-Day Hybrid Plan</title>
+<meta name="theme-color" content="#e4562d">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🔨</text></svg>">
 <link rel="stylesheet" href="style.css">
-<script type="importmap">
-{ "imports": {
-  "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
-  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
-}}
-</script>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="brand">⬡ FORGE<small id="tb-sub">GOGGINS PROTOCOL</small></div>
-  <div class="rt" id="tb-rt"></div>
-</div>
-
 <div class="wrap">
-
-  <!-- HERO: mission + logic (left), hologram (right) -->
-  <section class="hero">
-    <div>
-      <div class="mission" id="mission"></div>
-      <div class="telem" id="telem"></div>
-      <div class="logic-row" id="logic"></div>
-    </div>
-    <div class="holo-stage">
-      <canvas id="holo"></canvas>
-      <div class="ring"></div>
-      <div class="htitle">SUBJECT // MICHAEL · SCAN 01</div>
-      <div class="hint">◄ DRAG TO ROTATE 360 ►</div>
-    </div>
-  </section>
-
-  <section class="band">
-    <h2>THE TEAM // DECISIONS &amp; REASONING</h2>
-    <div class="bento" id="team"></div>
-  </section>
-
-  <section class="band">
-    <h2>90-WEEK DIAGNOSTIC &amp; TOP LIFTS <span class="sub">where the volume went, and where the strength is</span></h2>
-    <div class="bento">
-      <div class="panel c5" id="lifts"><span class="cornr tr"></span><span class="cornr bl"></span></div>
-      <div class="panel c7 dist" id="dist"><span class="cornr tr"></span><span class="cornr bl"></span></div>
-    </div>
-  </section>
-
-  <section class="band">
-    <h2>OBJECTIVES // 30-DAY</h2>
-    <div class="bento" id="goals"></div>
-  </section>
-
-  <section class="band">
-    <h2>WEEKLY TEMPLATE <span class="sub">4 gym + 1 engine day</span></h2>
-    <div class="bento" id="week"></div>
-  </section>
-
-  <section class="band">
-    <h2>THE CALLUS PROTOCOL // DAILY, IT CLIMBS</h2>
-    <div class="bento">
-      <div class="panel c8" id="callus"><span class="cornr tr"></span><span class="cornr bl"></span></div>
-      <div class="panel c4" id="phasesWrap"><span class="cornr tr"></span><span class="cornr bl"></span>
-        <div style="font-family:var(--hud);font-size:12px;letter-spacing:2px;color:var(--cyan);margin-bottom:12px">30-DAY ESCALATION</div>
-        <div id="phases"></div>
+  <header class="hd">
+    <div class="top">
+      <div>
+        <h1 id="h-title">FORGE</h1>
+        <div class="sub" id="h-sub"></div>
+        <div class="approve" id="h-approve"></div>
+      </div>
+      <div class="prog">
+        <div class="lab"><span>BLOCK PROGRESS</span><b id="p-frac">0 / 20</b></div>
+        <div class="track"><div class="fill good" id="p-fill"></div></div>
+        <div class="lab" style="margin-top:8px"><span>SESSION FLOOR (min 12)</span><b id="p-floor">0</b></div>
       </div>
     </div>
+  </header>
+
+  <nav id="nav">
+    <a href="#plan" class="on">Plan</a>
+    <a href="#calendar">30-Day</a>
+    <a href="#goals">Goals</a>
+    <a href="#nutrition">Nutrition</a>
+    <a href="#team">Team</a>
+  </nav>
+
+  <section id="plan">
+    <div class="sec-h"><h2>The Week</h2><div class="note" id="plan-note"></div></div>
+    <div class="grid" id="week"></div>
+  </section>
+
+  <section id="calendar">
+    <div class="sec-h"><h2>30-Day Board</h2><div class="note">Tap a day when it's done. Nothing to log, just the streak.</div></div>
+    <div class="card" style="padding:16px">
+      <div class="cal" id="cal"></div>
+    </div>
+  </section>
+
+  <section id="goals">
+    <div class="sec-h"><h2>Goals</h2><div class="note">Bars auto-update from your Hevy syncs.</div></div>
+    <div class="grid g2" id="goals-list"></div>
+    <div class="sec-h" style="margin-top:22px"><h2>Checkpoints</h2><div class="note">Tap when hit.</div></div>
+    <div class="card" id="checkpoints"></div>
+  </section>
+
+  <section id="nutrition">
+    <div class="sec-h"><h2>Nutrition</h2><div class="note" id="nut-head"></div></div>
+    <div class="card" id="nutrition-card"></div>
+  </section>
+
+  <section id="team">
+    <div class="sec-h"><h2>The Team</h2><div class="note">Who decided what. Lead has final say.</div></div>
+    <div class="grid g3" id="team-list"></div>
+    <div class="card" id="approval" style="margin-top:14px;padding:16px 18px"></div>
   </section>
 
   <div class="foot" id="foot"></div>
 </div>
 
 <script src="data.js"></script>
-<script type="module">
-import { initHologram } from './hologram.js';
-const D = window.DATA, $ = s=>document.querySelector(s);
-const el = h=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
-const cn = '<span class="cornr tr"></span><span class="cornr bl"></span>';
-
-$('#tb-sub').textContent = D.meta.subtitle;
-$('#tb-rt').innerHTML = `ATHLETE <b>${D.meta.athlete}</b> · BLOCK ${D.meta.block} · ${D.meta.generated} <span class="blink">▮</span>`;
-
-$('#mission').innerHTML = `<div class="code">MISSION // ${D.meta.block}</div>
-  <h1>${D.mission.codename}</h1><p class="theme">${D.mission.theme}</p>
-  <div class="creed">"${D.mission.creed}"</div>`;
-
-const s=D.meta.stats;
-$('#telem').innerHTML = [
-  [s.weight_kg+'','KG BODYWEIGHT'],[s.bodyfat_est,'BODY FAT'],[s.clean_days+'D','HOOKAH CLEAN'],
-  ['3','SESSION FLOOR'],['12','SESSIONS / 30D']
-].map(([n,k])=>`<div class="t"><div class="n">${n}</div><div class="k">${k}</div></div>`).join('');
-
-$('#logic').append(...D.logic.map(l=>el(`
-  <div class="logic ${l.accent}">
-    <div class="tag">${l.tag}</div><h3>${l.title}</h3>
-    <p class="lead">${l.lead}</p>
-    ${l.body.map(p=>`<p>${p}</p>`).join('')}
-    <div class="punch">▸ ${l.punch}</div>
-  </div>`)));
-
-$('#team').append(...D.team.map(c=>el(`
-  <div class="panel coach ${c.accent} c4">${cn}
-    <div class="name">${c.name}</div><div class="role">${c.role}</div>
-    <div class="verdict">${c.verdict}</div>
-    ${c.decisions.map(d=>`<div class="dec"><div class="w">${d.what}</div><div class="y">${d.why}</div></div>`).join('')}
-    <div class="nn">NON-NEGOTIABLE // <span>${c.nonneg}</span></div>
-  </div>`)));
-
-$('#lifts').innerHTML = cn + `<div style="font-family:var(--hud);font-size:12px;letter-spacing:2px;color:var(--cyan);margin-bottom:6px">TOP LIFTS // CURRENT ▸ TARGET</div>` +
-  D.lifts.map(l=>{
-    const pct=Math.max(0,Math.min(100,((l.current-l.start)/(l.goal-l.start))*100));
-    return `<div class="lift"><div class="lh"><span class="ln">${l.name}</span>
-      <span class="lv"><b>${l.current}</b> / ${l.goal} ${l.unit}</span></div>
-      <div class="bar"><div class="grid-ticks"></div><div class="fill" data-w="${pct}"></div></div>
-      <div class="cap"><span>START ${l.start}</span><span>${Math.round(pct)}% TO TARGET</span></div>
-      <div class="note">${l.note}</div></div>`;
-  }).join('');
-
-$('#dist').innerHTML = cn + `<div style="font-family:var(--hud);font-size:12px;letter-spacing:2px;color:var(--cyan);margin-bottom:10px">VOLUME DISTRIBUTION // 90 WEEKS · ${D.diagnostic.training_days} DAYS</div>` +
-  D.diagnostic.distribution.map(d=>`<div class="row"><div class="lbl">${d.label}</div>
-    <div class="track"><div class="f ${d.tone}" data-w="${Math.min(100,d.pct*3)}"></div></div>
-    <div class="pc">${d.pct}%</div></div>`).join('') +
-  `<div class="readout">${D.diagnostic.readout}</div>`;
-
-$('#goals').append(...D.goals.map(g=>el(`
-  <div class="panel goal ${g.accent} c3">${cn}<h3>${g.domain}</h3>
-    ${g.items.map(i=>`<div class="gi"><div class="g">${i.g}</div><div class="d">${i.d}</div></div>`).join('')}
-  </div>`)));
-
-const wspan=['c4','c4','c4','c6','c6'];
-$('#week').append(...D.week.map((w,i)=>el(`
-  <div class="panel day ${w.accent==='green'?'green':''} ${wspan[i]}">${cn}
-    <div class="dh"><span class="dn">${w.day}</span><span class="dt">${w.tag}</span></div>
-    <div class="dsub">${w.title}</div><div class="dwhy">${w.why}</div>
-    <ul>${w.blocks.map(b=>`<li>${b.replace('// PRIORITY','<b>// PRIORITY</b>')}</li>`).join('')}</ul>
-  </div>`)));
-
-$('#callus').innerHTML = cn + `<div style="font-family:var(--hud);font-size:12px;letter-spacing:2px;color:var(--amber);margin-bottom:12px">THE CALLUS PROTOCOL</div>
-  <p class="callus-intro">${D.callus.intro}</p>
-  <table class="callus"><tr><th>DAYS</th><th>COLD</th><th>DEAD HANG</th><th>PLANK</th><th>SILENT ENGINE</th></tr>
-  ${D.callus.rows.map(r=>`<tr><td>${r.days}</td><td>${r.cold}</td><td>${r.hang}</td><td>${r.plank}</td><td>${r.engine}</td></tr>`).join('')}</table>`;
-
-$('#phases').innerHTML = D.phases.map(p=>`
-  <div class="phase" style="margin-bottom:14px">
-    <div class="pw">${p.wk}</div><div class="psub">${p.sub}</div>
-    <div class="kv"><span>ZONE-2</span><b>${p.z2}</b></div>
-    <div class="kv"><span>RUN</span><b>${p.run}</b></div>
-    <div class="kv"><span>INTERVALS</span><b>${p.intervals}</b></div>
-    <div class="kv"><span>CALLUS</span><b>${p.callus}</b></div></div>`).join('');
-
-$('#foot').textContent = `FORGE // ${D.meta.athlete} // ${D.mission.creed}`;
-
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
-  e.target.querySelectorAll('.fill,.f').forEach(f=>f.style.width=f.dataset.w+'%');io.unobserve(e.target);}},{threshold:.25}));
-document.querySelectorAll('#lifts,#dist').forEach(b=>io.observe(b));
-
-try{ initHologram($('#holo'), $('.holo-stage')); }
-catch(err){ console.error(err); $('.holo-stage').innerHTML='<div class="hint" style="position:static;padding:40px">HOLOGRAM OFFLINE · WEBGL REQUIRED</div>'; }
-</script>
+<script src="app.js"></script>
 </body>
 </html>

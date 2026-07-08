@@ -86,7 +86,7 @@ window.DATA = {
   /*GOALS_START*/
   goals: [
     { name:"Bench e1RM", start:67, goal:73, current:67, unit:"kg", source:"hevy", note:"Reclaim the ground lost in June. 100kg is a December goal.", kind:"accent" },
-    { name:"Deadlift e1RM", start:160, goal:167, current:143, unit:"kg", source:"hevy", note:"Trap-bar 130→140 for 3×4-6. On the 200 track.", kind:"accent" },
+    { name:"Deadlift e1RM", start:143, goal:160, current:143, unit:"kg", source:"hevy", note:"Reclaim your 150×2 PR. Trap-bar 130→140 for 3×4-6. On the 200 track.", kind:"accent" },
     { name:"Pull-Ups", start:6, goal:10, current:6, unit:"reps", source:"hevy", note:"Strict, or band 16kg down to 8kg on 4×6-8.", kind:"accent" },
     { name:"Continuous Run", start:5, goal:20, current:5, unit:"min", source:"manual", note:"Unbroken, Zone-2, HR under 150. From run/walk to real running.", kind:"steel" },
     { name:"Stair 20-min Test", start:0, goal:12, current:0, unit:"% floors", source:"manual", note:"+10-15% floors OR same floors at 8-10 bpm lower HR.", kind:"steel" },
