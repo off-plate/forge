@@ -7,7 +7,7 @@ window.DATA = {
 
   meta: {
     codename: "GROUNDWORK",
-    oneLiner: "4 lifts + 3 climbs a week. Bench 100, deadlift 200, a 180-minute engine, abs via the kitchen.",
+    oneLiner: "Six weeks to the vacation cut. November is the 100 kg test. 4 lifts + 3 climbs, one groove, benched 3x a week.",
     approvedBy: "Built from 437 logged workouts + 3 research briefs",
     creed: "Easy days easy. Heavy days heavy. Meals eaten. Every day logged.",
     block: "1 · Jul 13 to Aug 11",
@@ -31,15 +31,15 @@ window.DATA = {
     A: {
       name: "The Week",
       tag: "one template, rising numbers",
-      blurb: "One repeating week. Progression is built into the rules: +2.5 kg bench and +5 kg deadlift when top sets land clean, +10-15% on the long climb. Week 4 of every month polarizes: maintenance calories, first Norwegian 4x4, shorter long climb. Nothing to decide on the day, just execute.",
+      blurb: "One repeating week, ON PURPOSE: to bench 100 fast you press the same groove often, heavy. Strength is a skill and skill loves repetition (specificity). The excitement is the top-set number climbing every single week, not exercise roulette. Rules: bench +2.5 kg EVERY week the reps land, deadlift +5, long climb +10-15%. Week 4 of each month: maintenance calories, first Norwegian 4x4, shorter climb.",
       days: [
         {
           title: "Monday · Bench Heavy",
           tag: "IRON", kind: "excite",
-          why: "Bench twice a week is the fastest evidence-backed route back to 78 and on toward 100 (pressing rewards frequency most, Grgic 2018). Heavy day comes first in the week, freshest.",
-          warmup: "Full ramp on bench only: bar x10, 40 x5, 50 x3, 55 x1 primer, then the top set. Everything after bench: one lighter feeder set, no full ramps.",
+          why: "The 100 campaign. You never trained heavy bench (zero logged singles, triples or fives), which means the fast novice window on heavy loads is still unspent. 3x weekly pressing + this heavy top set is how it gets spent (frequency drives pressing strength, Grgic 2018).",
+          warmup: "Full ramp on bench only: bar x10, 40 x5, 52.5 x3, 57.5 x1 primer, then the top set. Everything after bench: one lighter feeder set, no full ramps.",
           exercises: [
-            { name: "Bench Press (Barbell)", sub: "top set, then backoffs. +2.5 kg when 5 land clean at RIR 2", prescr: "60 x5 @RIR2 + 3x6 @50" },
+            { name: "Bench Press (Barbell)", sub: "top set, then backoffs. +2.5 kg EVERY week the 5 land at RIR 2. Ride the run while it lasts", prescr: "62.5 x5 @RIR2 + 3x6 @52.5" },
             { name: "Incline Bench Press (Smith)", sub: "your 74-session favorite, e1RM already 80", prescr: "3 x6-8 @60" },
             { name: "Chest Press (Machine)", sub: "hypertrophy feeder", prescr: "2 x12 @50" },
             { name: "Triceps Pushdown", sub: "lockout is triceps-limited", prescr: "3 x10-12 @27.5" },
@@ -105,6 +105,7 @@ window.DATA = {
           warmup: "Full ramp on deadlift only: 60 x5, 90 x3, 110 x2, 122.5 x1 primer, then top set. Everything after: one feeder set max.",
           exercises: [
             { name: "Deadlift (Barbell)", sub: "top set then backoffs. +5 kg when 5 land clean, undertrained lifts jump fast", prescr: "130 x5 @RIR2 + 2x5 @115" },
+            { name: "Bench Press speed triples", sub: "third weekly groove hit. Bar moves FAST, nowhere near failure. Always 12.5 under Monday's top set", prescr: "4 x3 @50" },
             { name: "Seated Cable Row (V-Grip)", sub: "mid-back keeps the bar close", prescr: "3 x10-12 @70" },
             { name: "Reverse Grip Lat Pulldown", sub: "77 sessions, lat strength", prescr: "3 x8-10 @57.5" },
             { name: "Leg Press (Machine)", sub: "knee insurance per the squat verdict. Find the 12-rep load week 1, RIR 3", prescr: "3 x12 light", tag: "verdict" },
@@ -129,10 +130,11 @@ window.DATA = {
   },
 
   arc: [
-    { wk: "Week 1", iron: "Bench 60x5, deadlift 130x5, all top sets at RIR 2. Learn the feel, log everything.", engine: "~105 min Z2: Tue 30, optional 25 after a lift, Sun long 45." },
-    { wk: "Week 2", iron: "+2.5 bench / +5 deadlift if week 1 landed clean (62.5 / 135).", engine: "~130 min: Tue 40, appends, Sun long 55." },
-    { wk: "Week 3", iron: "+2.5 / +5 again if earned (65 / 140).", engine: "~150 min: Tue 45, appends, Sun long 70." },
-    { wk: "Week 4", iron: "Hold loads, drop one backoff set. Eat at maintenance ~2800 all week, programmed.", engine: "Polarize ~135 min: first Norwegian 4x4 on Tuesday, Sun long 60 easy." }
+    { wk: "Week 1", iron: "Bench 62.5x5, deadlift 130x5, top sets at RIR 2. Groove in, log everything.", engine: "~105 min Z2: Tue 30, optional 25 after a lift, Sun long 45." },
+    { wk: "Week 2", iron: "Bench 65 / deadlift 135. The +2.5 / +5 train leaves weekly when reps land.", engine: "~130 min: Tue 40, appends, Sun long 55." },
+    { wk: "Week 3", iron: "Bench 67.5 / deadlift 140.", engine: "~150 min: Tue 45, appends, Sun long 70." },
+    { wk: "Week 4", iron: "Hold loads, drop one backoff set. Eat at maintenance ~2800 all week, programmed.", engine: "Polarize ~135 min: first Norwegian 4x4 on Tuesday, Sun long 60 easy." },
+    { wk: "Weeks 5-6", iron: "Bench 70 then 72.5-75. Aug 18-19: ramp to a heavy SINGLE, 85-90. That is the bench you take on vacation.", engine: "Hold ~150 min, long climb 75-80. Aug 20: leanest you have been in years." }
   ],
 
   calls: [
@@ -155,13 +157,13 @@ window.DATA = {
       src: "Wilson 2012 · Schumann 2022 · Sports Med umbrella 2026"
     },
     {
-      t: "The 95 bench does not exist", verdict: "REBUILD, THEN BUILD",
+      t: "Bench 100: the November test", verdict: "BENCH 3X A WEEK",
       body: [
-        "Peak logged bench: e1RM 80 in April (60x10). Current form: 67, after two four-week gaps. There is not a single logged set near 95.",
-        "Phase 1 is reacquisition: 67 back to ~78 in 6-10 weeks of benching twice weekly. That part is fast.",
-        "78 to 100 is a +28% intermediate build and a ~500 kcal deficit blunts new muscle (Murphy & Koehler 2022). Honest date: e1RM 100 lands in 2027, and it accelerates the day the cut ends. The block target is 72+."
+        "The log truth stands: peak e1RM 80 (April, 60x10), no set near 95 ever. But the log shows something bigger: you have NEVER trained heavy bench. Zero singles, triples or fives in 90 weeks, only 8-16 rep work, with month-long gaps.",
+        "That makes you a novice AT HEAVY LOADS with an intermediate muscle base, and novices on a new stimulus progress weekly, not yearly. Strength at low reps is half skill, and skill comes fast with frequency (Grgic 2018). So: three bench exposures a week (heavy Monday, volume Thursday, speed triples Saturday), +2.5 kg every week the reps land.",
+        "The line this draws: single at 85-90 before vacation (Aug 20), then 100x1 TEST on Nov 30. Conditions attached, no negotiation: no training gaps, 2400 eaten daily, weight loss capped at 0.6 kg/week. Miss those and the date moves, that is physics, not mentality."
       ],
-      src: "Murphy & Koehler 2022 · Grgic 2018 · your own log"
+      src: "Grgic 2018 (frequency) · Graham & Cleather 2021 · your own log"
     },
     {
       t: "Deadlift 200 is the layup", verdict: "PULL WEEKLY",
@@ -182,11 +184,11 @@ window.DATA = {
       src: "Byrne 2018 (MATADOR) · Helms 2014 · Garthe 2011"
     },
     {
-      t: "Abs are a kitchen project with a date", verdict: "FEB-APR 2027",
+      t: "The vacation cut, then the November look", verdict: "AUG 20 · NOV 30",
       body: [
-        "With waist-dominant storage, abs show last: first upper-ab lines around 13-14% bodyfat, which for you means roughly 80-82 kg. At 0.5-0.6 kg/week from 96, that is honestly 6-8 months out. A full six-pack is a 10-14 month project.",
-        "No exercise reveals them: six weeks of daily ab training changed belly fat by exactly nothing in the trial (Vispute 2011). Fat leaves systemically and your waist is biologically last in line (alpha-2 receptor density).",
-        "So the core work in this plan is isometric, hip-safe, and exists to protect the SI joint and brace the deadlift. The mirror is fed by the kitchen, the sleep, and the steps."
+        "Vacation (Aug 20, 6 weeks): 90-91 kg on the scale (the first week drops fast, water and glycogen). Leanest you have been in years: tighter waist, face and shoulders pop, upper chest shows. That plus an 85-90 bench single is what you take to the beach.",
+        "November 30 (20 weeks): 85-86 kg at the same rate. With your waist-dominant storage that is where the first upper-ab lines show in decent light. The deep-cut six-pack sits further down the same road (~82 kg), reached by simply not stopping.",
+        "No exercise reveals any of it: six weeks of daily ab training changed belly fat by exactly nothing (Vispute 2011). The mirror is fed by 2400 eaten, 7h slept, 10k walked. Faster than 0.6 kg/week burns muscle and makes vacation look WORSE, not better."
       ],
       src: "Vispute 2011 · Nedeltcheva 2010 · Helms 2014"
     },
@@ -202,7 +204,7 @@ window.DATA = {
   ],
 
   volume: [
-    { m: "Chest",        sets: 17,  freq: "2x", hot: false },
+    { m: "Chest",        sets: "19 + speed",  freq: "3x", hot: true },
     { m: "Back + lats",  sets: 19,  freq: "2x", hot: true },
     { m: "Side delts",   sets: 9,   freq: "2x", hot: true },
     { m: "Upper chest",  sets: 6,   freq: "2x", hot: true },
@@ -216,26 +218,27 @@ window.DATA = {
   /*GOALS_START*/
   goals: [
     { name: "Bench Press e1RM", start: 67, current: 67, goal: 100, unit: "kg", kind: "accent", source: "hevy",
-      note: "Peak was 80 in April. Phase 1: back to 78 by mid-September. The 100 is a 2027 lift and accelerates the day the cut ends. Block target: 72+." },
+      note: "3x a week, +2.5 every week. Vacation marker Aug 20: heavy single at 85-90. THE TEST: 100x1 on Nov 30. Conditions: no gaps, 2400 eaten, cut capped at 0.6/wk." },
     { name: "Deadlift e1RM", start: 143, current: 143, goal: 200, unit: "kg", kind: "accent", source: "hevy",
-      note: "The layup. One heavy pull every Saturday, +5 kg when clean. 160 by September, 200 in 6-12 months." },
+      note: "The layup. One heavy pull every Saturday, +5 kg when clean. Nov 30 marker: 180x1. The 200 falls in the months right after." },
     { name: "Engine Z2", start: 0, current: 0, goal: 180, unit: "min/wk", kind: "steel", source: "hevy",
       note: "Talk-test pace only. 105 in week 1, 150 by week 3, 180 by autumn. Auto-sums this week's stair minutes from Hevy." },
     { name: "Longest climb", start: 68, current: 68, goal: 90, unit: "min", kind: "steel", source: "hevy",
       note: "Grows 10-15% per week from an easy 45. 90 by September, 120 is the later stretch. Knees set the ceiling, not lungs." },
     { name: "Bodyweight", start: 96, current: 96, goal: 82, unit: "kg", kind: "good", source: "manual",
-      note: "0.5-0.6 kg/week, no faster. First ab lines around 80-82 kg: honestly Feb-Apr 2027. Block marker: 94.5 by Aug 9." }
+      note: "0.5-0.6 kg/week, no faster. Vacation Aug 20: 90-91, leanest in years. Nov 30: 85-86, first ab lines. 82 is where the full six-pack lives." }
   ],
   /*GOALS_END*/
 
   checkpoints: [
-    { t: "Week 1 complete: 6 sessions, ~105 Z2 minutes", d: "The floor is the win. Loads deliberately conservative, log everything.", when: "Jul 19" },
-    { t: "Bench top set 62.5 x5", d: "First +2.5 on the rebuilt groove.", when: "~Jul 26" },
-    { t: "Deadlift top set 140 x5", d: "+10 kg in two weeks. Undertrained lifts move fast.", when: "~Aug 2" },
+    { t: "Week 1 complete: 6 sessions, ~105 Z2 minutes", d: "The floor is the win. Log everything.", when: "Jul 19" },
+    { t: "Bench top set 65 x5", d: "The weekly +2.5 train is rolling.", when: "~Jul 20" },
+    { t: "Deadlift top set 140 x5", d: "+10 kg in two weeks. Undertrained lifts move fast.", when: "~Aug 1" },
     { t: "Long climb reaches 70 minutes", d: "Two thirds of the way to the 90-minute base.", when: "~Aug 2" },
     { t: "Maintenance week + first Norwegian 4x4", d: "Eat ~2800 for 7 days and hit one interval session. Programmed, not cheating.", when: "Aug 3-9" },
-    { t: "Bodyweight 94.5 or lower", d: "On the 0.5-0.6 kg/week line from 96.", when: "Aug 9" },
-    { t: "Block review: bench e1RM 72+, deadlift e1RM 152+", d: "Auto-checked from Hevy at sync. Then Block 2 loads.", when: "Aug 10" }
+    { t: "VACATION CHECK: bodyweight 91 or less, bench single 85-90, climb 75+", d: "Six weeks of work you can see in the mirror and load on the bar. Test the single Aug 18-19, then go enjoy it.", when: "Aug 20" },
+    { t: "NOVEMBER CHECK: bench 100 x1 TEST", d: "The main event. Taper the last week, then take it.", when: "Nov 30" },
+    { t: "NOVEMBER CHECK: deadlift 180 x1, bodyweight 85-86, Z2 at 180 min/wk", d: "First ab lines territory. 200 deadlift and the deep cuts sit right behind it.", when: "Nov 30" }
   ],
 
   nutrition: {
@@ -288,7 +291,7 @@ window.DATA = {
   ],
 
   approval: {
-    verdict: "Three independent research briefs, one plan. Every weight is from your log, every claim is cited, every timeline is honest even where it stings: the 95 bench is not in the log, the abs are a 2027 reveal, the squat is deferred on evidence and not on hate. The Goggins in this plan is not the intervals. It is eating 2400 every single day, climbing at a pace that feels embarrassingly easy, and showing up six times a week for months without an audience. Discipline over intensity.",
-    signoff: "HEAD COACH · approved 2026-07-09 · block starts Monday Jul 13"
+    verdict: "Three research briefs, one plan, one correction. The first draft priced bench 100 like you were a trained intermediate; your log proved you never trained heavy bench at all, and an unspent novice window moves weekly, not yearly. So the campaign is: bench 3x a week, +2.5 every week, 85-90 single before vacation, 100 on the bar Nov 30. The rest holds: squat deferred on evidence, stair validated over running, 2400 eaten daily. The Goggins in this plan is not the intervals. It is doing the same boring week at full intent, six days out of seven, until the numbers have no choice.",
+    signoff: "HEAD COACH · v2 approved 2026-07-09 · block starts Monday Jul 13 · Hevy updated"
   }
 };
