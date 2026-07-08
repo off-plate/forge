@@ -104,7 +104,7 @@ window.DATA = {
           why: "The layup goal, in your freshest 2-hour slot after a rest day. 14 sessions in 90 weeks is why 200 is still far; one honest heavy pull a week is how it gets close (undertrained lifts progress even in a deficit, Helms 2014). Everything here serves the pull: back thickness keeps the bar tight, grip is the classic 200 limiter, leg press is the knee insurance from the squat verdict.",
           warmup: "Full ramp on deadlift only: 60 x5, 90 x3, 110 x2, 122.5 x1 primer, then top set. Everything after: one feeder set max.",
           exercises: [
-            { name: "Deadlift (Barbell)", sub: "top set then backoffs. +5 kg when 5 land clean, undertrained lifts jump fast", prescr: "130 x5 @RIR2 + 2x5 @115" },
+            { name: "Deadlift (Barbell)", sub: "top set 3-5 reps: 3 keeps you on plan, 5 earns the +5 kg. Recent form is 130x3, so week 1 may be a triple, that is fine", prescr: "130 x3-5 @RIR2 + 2x5 @115" },
             { name: "Bench Press speed triples", sub: "third weekly groove hit. Bar moves FAST, nowhere near failure. Always 12.5 under Monday's top set", prescr: "4 x3 @50" },
             { name: "Seated Cable Row (V-Grip)", sub: "mid-back keeps the bar close", prescr: "3 x10-12 @70" },
             { name: "Reverse Grip Lat Pulldown", sub: "77 sessions, lat strength", prescr: "3 x8-10 @57.5" },
