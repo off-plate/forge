@@ -58,6 +58,18 @@
   renderWeek('A');
   $('#plan-note').textContent = "Two rotating weeks. Tap a day to expand.";
 
+  // ---- volume & frequency ----
+  const wf = D.frequencyWhy;
+  $('#why-freq').innerHTML = `<div style="font-weight:700;font-size:15px;margin-bottom:10px">${wf.head}</div>`
+    + wf.body.map(p=>`<p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:9px">${p}</p>`).join('');
+  $('#vol-table').innerHTML = `<div style="font-weight:700;font-size:15px;margin-bottom:12px">Weekly sets per muscle</div>`
+    + D.volume.map(v=>`
+      <div class="cp" style="padding:9px 0">
+        <div class="txt" style="flex:1"><div class="t" style="${v.hot?'color:var(--accent)':''}">${v.m}</div></div>
+        <div class="bignum" style="font-size:15px;${v.hot?'color:var(--accent)':''}">${v.sets}${typeof v.sets==='number'?' sets':''}</div>
+        <div class="when" style="color:var(--muted);min-width:52px;text-align:right">${v.freq}</div>
+      </div>`).join('');
+
   // ---- how it grows (4-week arc) ----
   const arc = el(`<div class="card arc"></div>`);
   arc.innerHTML = `<div class="arc-h">How the grind grows over 30 days</div>` +
