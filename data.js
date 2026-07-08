@@ -1,169 +1,145 @@
-/* FORGE — all content. Synthesized from the 3-coach team analysis of 90 weeks of Hevy data.
-   Every decision carries its WHY. Edit here to update the dashboard. */
+/* FORGE — 30-day hybrid plan. Approved by the team (Goggins lead, Nippard physique, Nick Bare engine).
+   Auto-updated numbers live between the markers. Edit copy freely elsewhere. */
 window.DATA = {
   meta: {
-    callsign: "FORGE",
-    subtitle: "GOGGINS PROTOCOL // 30-DAY FLOOR",
-    athlete: "MICHAEL",
-    block: "01",
-    generated: "2026-07-08",
-    stats: { age: 27, height_cm: 179, weight_kg: 96, bodyfat_est: "27-30%", clean_days: 60 },
+    athlete: "MICHAEL", block: "01", generated: "2026-07-08",
+    codename: "BUILD THE FLOOR",
+    oneLiner: "You already have a ceiling. You have no floor. No aerobic base, no consistency. Everything this month serves the floor.",
+    approvedBy: "Approved by Goggins (Lead) · designed with Nippard (physique) + Nick Bare (engine)",
+    creed: "Feelings don't get a vote. I bank today's deposit, I go one more, the streak stays alive.",
   },
 
-  mission: {
-    codename: "THE 30-DAY FLOOR",
-    theme: "You do not rise to the occasion. You fall to your floor. So we build a floor you cannot fall through. This block is not a hero month. It is proof you can do the boring work every week without the wheels coming off.",
-    creed: "I quit at my mental limit, not my physical one. Not today. Today I stay.",
+  // ---- weekly template ----
+  dayTypes: {
+    push:  { label: "Push",        kind: "excite" },
+    stair: { label: "Stair+Carry", kind: "grind"  },
+    pull:  { label: "Pull",        kind: "excite" },
+    z2:    { label: "Zone-2",      kind: "steady" },
+    pump:  { label: "Pump",        kind: "light"  },
+    run:   { label: "Run",         kind: "grind"  },
+    rest:  { label: "Rest",        kind: "rest"   },
   },
-
-  // ---- THE LOGIC: the three biggest calls, explained in full (answers "what is the point") ----
-  logic: [
-    {
-      tag: "PRIORITY 01",
-      accent: "amber",
-      title: "WHY SIDE DELTS FOR 30 DAYS",
-      lead: "This is the fastest way to LOOK better while you are still losing fat.",
-      body: [
-        "In 90 weeks you did 22% of all your sets as chest pressing and only 8% as shoulders. Your chest and arms are built. Your side delts are the most underdeveloped muscle you own relative to everything around them.",
-        "You are cutting to see abs. Abs are a body-fat problem and they take months. Shoulder width is a muscle problem you can move in weeks.",
-        "Wide, capped delts make your waist look narrower the moment they grow. The V-taper is an optical trick: you look lean before you actually are lean. That is the single highest-leverage visual on your frame right now.",
-        "Bonus: it is low injury risk, it trains fine even under-fueled, and it never touches your hip. Nothing else gives this much visible return for this little cost.",
-      ],
-      punch: "16-20 hard side-delt sets a week closes the biggest gap in your entire training history.",
-    },
-    {
-      tag: "PRIORITY 02",
-      accent: "green",
-      title: "WHY THE ENGINE, NOT MORE STRENGTH",
-      lead: "You are a strong man who will get folded by a 10k with 30 obstacles.",
-      body: [
-        "Only 4% of everything you have ever logged is conditioning. That is not low, it is functionally zero. You have a 160kg deadlift sitting on top of almost no aerobic base.",
-        "On race day that gap shows up late: your heart rate drifts up and will not come down, your grip fails on the hanging obstacles because it is getting under-oxygenated blood, and your legs cramp on the climbs.",
-        "Strength is not your December problem. The engine is. Zone-2 work builds the base that keeps your grip and legs alive across 90+ minutes. It is low-stress, so it will not eat your lifting gains.",
-      ],
-      punch: "120-150 Zone-2 minutes a week is the highest-ROI change you can make for the Spartan.",
-    },
-    {
-      tag: "PRIORITY 03",
-      accent: "cyan",
-      title: "WHY A FLOOR, NOT A CEILING",
-      lead: "Your consistency swings from 30 sessions a month to 8. That is the real enemy.",
-      body: [
-        "The data is brutally clear: you go all-in on week one and surrender by week three. Feast then famine. That pattern, not your chest, is why your bench has stalled for months.",
-        "So this month we do the opposite of what you want. You are forbidden from adding bonus sessions when week one feels unstoppable. We cap the ceiling on purpose.",
-        "The line in the concrete is THREE quality sessions a week, every week, 12 for the month. Hit the target of 4, but never drop below 3. Restraint is the discipline you have never actually trained.",
-      ],
-      punch: "12 sessions in 30 days, no exceptions. Boring consistency beats heroic burnout every time.",
-    },
-  ],
-
-  // ---- the three coaches ----
-  team: [
-    {
-      id: "goggins", name: "DAVID GOGGINS", role: "TEAM LEAD // MIND", accent: "amber",
-      verdict: "You built a good-looking half of an athlete. Big upper body, real strength, an engine that basically does not exist, and consistency that collapses by week three. Showing up on the days you feel like garbage is the whole game this month.",
-      decisions: [
-        { what: "Conditioning becomes the spine, not a warmup.", why: "Legs and engine were 4% of your history. They move to a 25% minimum. That is where your December result is hiding." },
-        { what: "You are forbidden from adding extra sessions.", why: "Week-one enthusiasm is exactly what burns you out by week three. Capping the ceiling is how the floor survives." },
-        { what: "Bench gets attacked with volume in the 5-8 range.", why: "Grinding ego singles feeds your pride, not your bench. Tonnage in the reps you hate is what pushes the number up." },
-        { what: "Log every session the same day, honestly.", why: "The data is what caught your feast/famine pattern. It will catch you again. No rounding up, no hiding." },
-      ],
-      nonneg: "THE FLOOR IS 3. Minimum 3 sessions a week, 12 for the month. Not up for discussion, ever.",
-    },
-    {
-      id: "nippard", name: "THE SCIENTIST", role: "HYPERTROPHY // PHYSIQUE", accent: "cyan",
-      verdict: "You built a strong front on a soft, still-hidden midsection. Press and pull volume carry the show while your delts and upper back have been starved. Your fastest visual win is not more chest, it is width. Build the V-taper and you look lean before you are lean.",
-      decisions: [
-        { what: "Side delts: 16-20 hard sets/week.", why: "Your most underdeveloped muscle (8% shoulder vs 22% chest volume). Width makes the waist read smaller. Highest-leverage look on your frame." },
-        { what: "Rear delts + upper back: 10-14 sets/week.", why: "Your pulling has been lat-dominant. Rear delts give the 3D shoulder from the side and fix the chest-forward posture from years of pressing." },
-        { what: "Chest and lats drop to maintenance (8-10 sets).", why: "You are cutting. Protect them with heavy work instead of growing them, and free the recovery for the delts and back that actually need it." },
-        { what: "Arms hold, not grow (6-8 sets each).", why: "16% of your history is already arms. They are not a weak point. Adding volume here just steals recovery from the priorities." },
-      ],
-      nonneg: "16 side-delt sets every week, minimum. The lever your physique has missed for 90 weeks.",
-    },
-    {
-      id: "hybrid", name: "THE HYBRID", role: "FUNCTIONAL // ENGINE", accent: "green",
-      verdict: "A strength base most Spartan racers would kill for, on top of an engine that is basically undocumented. Fix the aerobic base and the grip-under-fatigue and you podium your age group. Ignore them and the deadlift is a party trick.",
-      decisions: [
-        { what: "Aerobic base first: 120-150 Zone-2 min/week.", why: "It clears lactate and builds the capillaries and mitochondria that let you hold a pace for hours without redlining. This is the missing floor." },
-        { what: "The weekend session becomes a RUN.", why: "Race day is on trail. Stairs do not teach running economy or downhill durability. You already have a run background, so use the specificity." },
-        { what: "Grip and carries every strength day.", why: "A 160 deadlift with an under-built grip loses races on the rig and monkey bars. Carries are free, do not tax the legs, and are the #2 race differentiator." },
-        { what: "Cap true intervals at 1x/week for now.", why: "On a cut with rebuilding lungs, junk high-intensity volume just digs a recovery hole. Base first, sharpen in the back half." },
-      ],
-      nonneg: "120+ Zone-2 minutes logged every week, like a lift. No base, no Spartan.",
-    },
-  ],
-
-  /*LIFTS_START*/
-  lifts: [
-    { name: "BENCH PRESS", metric: "e1RM", unit: "kg", current: 80, goal: 100, start: 52, note: "Stalled for months. Volume, not singles, breaks it." },
-    { name: "DEADLIFT", metric: "e1RM", unit: "kg", current: 160, goal: 200, start: 77, note: "Your best lift. 200 is a December target, not August." },
-    { name: "PULL-UP", metric: "MAX", unit: "reps", current: 8, goal: 10, start: 2, note: "Trained twice a week. Leaner bodyweight helps too." },
-    { name: "INCLINE SMITH", metric: "e1RM", unit: "kg", current: 83, goal: 95, start: 34, note: "Climbed hard. Hold and refine, do not chase." },
-    { name: "CHEST PRESS", metric: "e1RM", unit: "kg", current: 93, goal: 105, start: 50, note: "Strong. Maintenance work while cutting." },
-    { name: "CABLE ROW", metric: "e1RM", unit: "kg", current: 110, goal: 120, start: 62, note: "Big back strength. Add upper-back width around it." },
-  ],
-  /*LIFTS_END*/
-
-  diagnostic: {
-    span: "OCT 2024 - JUN 2026", training_days: 376,
-    distribution: [
-      { label: "VERT PULL", pct: 25, tone: "ok" }, { label: "HORIZ PRESS", pct: 22, tone: "ok" },
-      { label: "ARMS", pct: 16, tone: "ok" }, { label: "HORIZ PULL", pct: 12, tone: "ok" },
-      { label: "SHOULDERS", pct: 8, tone: "warn" }, { label: "CONDITIONING", pct: 4, tone: "crit" },
-      { label: "LEGS", pct: 4, tone: "crit" }, { label: "HINGE", pct: 2, tone: "crit" },
-    ],
-    readout: "A bodybuilder's upper body on almost no engine. The three red bars, conditioning, legs and hinge, are the entire problem. The whole 30-day plan is aimed at them.",
-  },
-
-  goals: [
-    { domain: "STRENGTH", accent: "cyan", items: [
-      { g: "Bench 100kg", d: "from 80 e1RM, via volume" }, { g: "Deadlift 200kg", d: "Dec target, from 160" }, { g: "10 clean pull-ups", d: "from 6, trained 2x/week" } ] },
-    { domain: "PHYSIQUE", accent: "cyan", items: [
-      { g: "16+ side-delt sets/wk", d: "4 weeks straight, logged" }, { g: "Side raise 10 -> 12.5kg", d: "or +2-3 reps at load" }, { g: "Waist -2cm", d: "at the navel, the real cut signal" }, { g: "Protein 165g/day", d: "the retention floor" } ] },
-    { domain: "ENGINE", accent: "green", items: [
-      { g: "120+ Zone-2 min/wk", d: "logged like a lift" }, { g: "Stair test +12-15%", d: "floors at same heart rate" }, { g: "Carry 2x32kg / 60m", d: "no grip failure" }, { g: "Run 40 -> 60 min", d: "continuous, Zone-2" } ] },
-    { domain: "MIND", accent: "amber", items: [
-      { g: "12 sessions / 30 days", d: "the non-negotiable floor" }, { g: "Daily Callus, logged", d: "done or a red mark" }, { g: "No bonus sessions", d: "cap the ceiling on purpose" } ] },
-  ],
-
-  callus: {
-    intro: "One daily mental callus, separate from training, that CLIMBS over 30 days. The point is not fitness. It is teaching your brain that discomfort is a place you visit on purpose and walk out of unbothered. Day 1 is about 4 minutes of chosen suck. Day 30 is 30 minutes, and you look back at who you were.",
-    rows: [
-      { days: "01-07", cold: "60s", hang: "2:00", plank: "60s", engine: "-" },
-      { days: "08-14", cold: "90s", hang: "3:00", plank: "90s", engine: "10 min silent Z2" },
-      { days: "15-21", cold: "2:00", hang: "4:00", plank: "2:00", engine: "15 min silent" },
-      { days: "22-30", cold: "2-3m", hang: "5:00", plank: "2:30", engine: "20 min silent" },
-    ],
-  },
+  weekPattern: ["push","stair","pull","z2","pump","run","rest"],
 
   week: [
-    { day: "D1", title: "PRESS & DELTS", tag: "STRENGTH", accent: "cyan", why: "Bench volume + your side-delt priority + push-up callus + carries.", blocks: [
-      "Warmup ramp -> Bench, heavy top set + 3x5-8 volume",
-      "Incline press (maintenance)", "Smith Shoulder Press 3x8-10",
-      "Incline Side Raise 4x12-20  // PRIORITY", "Rear delt + triceps",
-      "FINISH: push-up Callus + 15 min farmer carries" ] },
-    { day: "D2", title: "ENGINE + HINGE", tag: "Z2", accent: "green", why: "Aerobic base + hip-safe posterior chain. Low stress, protects your lifts.", blocks: [
-      "Stair Zone-2, 35-45 min conversational", "Hip thrust 3x10-12",
-      "Back extension to NEUTRAL 3x12", "KB swing (if SI ok) + dead hang" ] },
-    { day: "D3", title: "PULL & DEADLIFT", tag: "STRENGTH", accent: "cyan", why: "Deadlift strength, pull-ups toward 10, upper-back width, grip.", blocks: [
-      "Warmup ramp -> Deadlift 4x3-4", "Pull-ups PRIORITY, toward 10",
-      "Wide rows (upper-back width)", "Face pull + one-arm pulldown",
-      "Biceps", "FINISH: carries + dead-hang Callus" ] },
-    { day: "D4", title: "THRESHOLD + SHOULDERS", tag: "INTERVALS", accent: "green", why: "The one hard-cardio day + more side/rear delt volume.", blocks: [
-      "Stair intervals 4-6 x 3 min hard / 2 min easy",
-      "Incline Side Raise 3x15-20", "Rear delt + lateral pump",
-      "Arms pump + push-up Callus" ] },
-    { day: "WK", title: "LONG AEROBIC", tag: "BASE", accent: "green", why: "Race-specific engine. Builds the base that survives 90+ min on course.", blocks: [
-      "RUN 40 -> 60 min easy continuous (build 10%/wk)",
-      "Hip prehab + glute/ham/quad mobility",
-      "Optional: swap for long stair if legs are cooked" ] },
+    { id:"push", title:"Monday · Push", kind:"excite", tag:"EXCITE",
+      why:"Your favorite incline pressing + a bench you can PR, then the delt caps you actually see in the mirror. This is a day you show up for.",
+      warmup:"Warm up ONLY here: 2 ramp sets on Incline DB (15kg×6, 25kg×4), 1 optional ramp on Bench (40kg×3). No warmup sets on anything after lift #2.",
+      exercises:[
+        { name:"Incline DB Press", sub:"anchor press · your most-used lift", prescr:"3×8-10 @ 32.5kg", wu:"2 ramp sets" },
+        { name:"Flat Barbell Bench", sub:"serves the 100kg goal", prescr:"3×5-8 @ 57.5kg", wu:"1 ramp set" },
+        { name:"Chest Fly (Machine)", sub:"isolation, no warmup", prescr:"3×12-15" },
+        { name:"Single-Arm Cable Lateral Raise", sub:"SIDE DELT — your #1 visual lever", prescr:"3-4×12-20 /arm @ 10kg", tag:"priority" },
+        { name:"Cable Rear-Delt Fly / Reverse Pec Deck", sub:"REAR DELT — the true void", prescr:"3×15-20", tag:"void" },
+        { name:"Triceps Pushdown", sub:"arms, no warmup", prescr:"3×10-15 @ 27.5kg" },
+      ] },
+    { id:"stair", title:"Tuesday · Stair + Carries", kind:"grind", tag:"GRIND",
+      why:"No runner's high here. The stairmaster and heavy carries. This is the deposit. Nobody's watching, do it anyway. From week 3, the Zone-2 becomes intervals.",
+      warmup:"5 min easy stair to warm up, then work.",
+      exercises:[
+        { name:"Stair Zone-2", sub:"conversational pace, HR 130-145, nasal breathing", prescr:"30→45 min" },
+        { name:"Farmer Carries", sub:"grip + trunk, hip-safe, chest tall", prescr:"4×40m → 5×50m" },
+        { name:"WEEK 3-4: swap Z2 for intervals", sub:"only if base has 2 weeks in it", prescr:"4-5 × 3min hard / 2min easy" },
+      ] },
+    { id:"pull", title:"Wednesday · Pull + Hinge", kind:"excite", tag:"EXCITE",
+      why:"Lats, pull-ups, and the trap-bar hinge that's been missing. Straight-arm pulldown is your #1 lift, pull-ups are the goal. Fun and progress on the same day.",
+      warmup:"Warm up ONLY here: 2 ramp sets on Trap-Bar DL (60kg×5, 100kg×3), 1 optional light band pull-up. No warmup sets after lift #2.",
+      exercises:[
+        { name:"Trap-Bar Deadlift", sub:"HINGE — SI-safe, serves the 200kg goal. Neutral spine, hip-led, kill the set on any pinch", prescr:"3×4-6 @ 130kg · RPE 7-8", tag:"void" },
+        { name:"Band-Assisted / Weighted Pull-Up", sub:"toward 10 clean · cut band 16→12→8kg", prescr:"4×4-8", tag:"priority" },
+        { name:"Seated Cable Row V-Grip", sub:"upper-back thickness", prescr:"3-4×8-12 @ 80kg" },
+        { name:"Straight-Arm Lat Pulldown", sub:"your #1 lift · lat width", prescr:"3×12-15 @ 30kg" },
+        { name:"Face Pull", sub:"REAR DELT 2nd weekly hit + shoulder health", prescr:"3×15-20", tag:"void" },
+        { name:"Hammer Curl (Cable)", sub:"arms, no warmup", prescr:"3×10-15" },
+      ] },
+    { id:"z2", title:"Thursday · Zone-2 Base", kind:"steady", tag:"STEADY",
+      why:"The connective tissue of the whole plan. Low-stress aerobic base that will NOT eat your gains. Supposed to feel almost too easy. That is the point.",
+      warmup:"",
+      exercises:[
+        { name:"Stair Zone-2", sub:"conversational, HR 130-145. Hip cranky? bike or incline walk instead", prescr:"30→45 min" },
+      ] },
+    { id:"pump", title:"Friday · Delt & Arm Pump", kind:"light", tag:"LIGHT",
+      why:"3rd delt hit of the week (that's how delts grow) plus arms. Light, fun, and you finish with a short Zone-2. Easy to show up for.",
+      warmup:"Light, no heavy ramps needed.",
+      exercises:[
+        { name:"Single-Arm Cable Lateral Raise", sub:"SIDE DELT 3rd hit", prescr:"3×15-20", tag:"priority" },
+        { name:"Cable Rear-Delt Fly", sub:"REAR DELT", prescr:"3×15-20", tag:"void" },
+        { name:"Hammer Curl + Triceps Pushdown", sub:"superset the arms", prescr:"3×12-15 each" },
+        { name:"Optional light bench technique", sub:"groove the pattern, not heavy", prescr:"3×3 @ easy" },
+        { name:"Zone-2 finisher", sub:"stair or walk", prescr:"15 min" },
+      ] },
+    { id:"run", title:"Saturday · Weekend Run", kind:"grind", tag:"GRIND",
+      why:"The one you don't want to do is the one that builds the December engine. Get off the machine. Run/walk to protect the hip and the rebuilding lungs. This is identity work.",
+      warmup:"5 min brisk walk before you start running.",
+      exercises:[
+        { name:"Run / Walk progression", sub:"Zone-2, HR under 150. Hip talks louder than a whisper? back to run/walk", prescr:"Wk1 4:1×6 · Wk2 5:1×6 · Wk3 8:1×4-5 · Wk4 40-45min continuous" },
+      ] },
+    { id:"rest", title:"Sunday · Reset", kind:"rest", tag:"REST",
+      why:"Recovery is training. Mobility, hip care, an easy walk. And check Datová schránka while you're at it.",
+      warmup:"",
+      exercises:[
+        { name:"Mobility + hip care", sub:"glute/ham/quad stretch, back-extension to neutral", prescr:"15 min" },
+        { name:"Easy walk", sub:"optional Zone-1", prescr:"20-30 min" },
+      ] },
   ],
 
-  phases: [
-    { wk: "WEEK 1", sub: "ESTABLISH THE FLOOR", z2: "35 min", run: "40 min", intervals: "4 rounds", callus: "Tier 1" },
-    { wk: "WEEK 2", sub: "ADD LOAD", z2: "40 min", run: "45 min", intervals: "5 rounds", callus: "Tier 2" },
-    { wk: "WEEK 3", sub: "RACE-SPECIFIC", z2: "45 min", run: "50 min", intervals: "6 rounds + carries", callus: "Tier 3" },
-    { wk: "WEEK 4", sub: "PEAK + RETEST", z2: "45 min +1 lvl", run: "60 min", intervals: "6 @ +1 lvl", callus: "Tier 4 + benchmark" },
+  /*GOALS_START*/
+  goals: [
+    { name:"Bench e1RM", start:67, goal:73, current:67, unit:"kg", source:"hevy", note:"Reclaim the ground lost in June. 100kg is a December goal.", kind:"accent" },
+    { name:"Deadlift e1RM", start:160, goal:167, current:143, unit:"kg", source:"hevy", note:"Trap-bar 130→140 for 3×4-6. On the 200 track.", kind:"accent" },
+    { name:"Pull-Ups", start:6, goal:10, current:6, unit:"reps", source:"hevy", note:"Strict, or band 16kg down to 8kg on 4×6-8.", kind:"accent" },
+    { name:"Continuous Run", start:5, goal:20, current:5, unit:"min", source:"manual", note:"Unbroken, Zone-2, HR under 150. From run/walk to real running.", kind:"steel" },
+    { name:"Stair 20-min Test", start:0, goal:12, current:0, unit:"% floors", source:"manual", note:"+10-15% floors OR same floors at 8-10 bpm lower HR.", kind:"steel" },
+    { name:"Bodyweight", start:96, goal:93, current:96, unit:"kg", source:"manual", note:"Waist beats the scale. Aim ~-2-3cm at the navel, strength held.", kind:"good" },
   ],
+  /*GOALS_END*/
+
+  checkpoints: [
+    { when:"DAY 15", t:"Bench 57.5kg moving clean for 6-8", d:"Strength holding under the cut" },
+    { when:"DAY 15", t:"Trap-bar 135kg · pull-up +1 rep or band down a level", d:"Hinge and pull trending up" },
+    { when:"DAY 15", t:"12-15 min continuous run · stair HR trending down", d:"The engine is responding" },
+    { when:"DAY 15", t:"11-13 of 13 sessions logged", d:"Under 10 = the problem is showing up, not the program" },
+    { when:"DAY 30", t:"Bench e1RM 73+ · Trap-bar 140 for 3×4-6", d:"Reclaimed and building" },
+    { when:"DAY 30", t:"Pull-ups 9-10 or band at 8kg", d:"Near the 10 goal" },
+    { when:"DAY 30", t:"20-min stair test · 20+ min continuous run · carry +50%", d:"Full engine battery" },
+    { when:"DAY 30", t:"Waist re-measure + progress photo", d:"The visual proof" },
+  ],
+
+  nutrition: {
+    protein:"180-200g", calFloor:"1800", water:"3-3.5L",
+    head:"You cannot out-train a mouth you don't control.",
+    rules:[
+      "Protein first, every meal: ~40-50g × 4 meals. Hit the 180g floor before carbs or fat fill the budget. This is your muscle-retention insurance in a deficit.",
+      "Park carbs around training: ~40-60g before and after hard sessions (Push, Pull, intervals, run). Go lower-carb on easy Zone-2 and rest days so you still cut.",
+      "Calorie floor 1800. That's already a ~700-1000 kcal deficit. If lifts or energy crater, float up to 2000-2100, never grind lower.",
+      "Water 3-3.5L/day, add ~0.5-1g sodium before any session over 40 min or interval day. Rebuilding lungs + dehydration = a garbage session.",
+      "Weigh weekly, adjust only after a 2-week stall. Not day to day.",
+    ],
+  },
+
+  team: [
+    { name:"DAVID GOGGINS", role:"Team Lead · Mind", calls:[
+      "Theme of the month: BUILD THE FLOOR. You have a ceiling, not a floor.",
+      "Never skip a GRIND day (Tue, Sat). Miss an excite day, make it up.",
+      "Approved the trap-bar hinge. 'Legs = stairmaster only' was fear, not a doctor.",
+      "Track the streak, not the feeling. Log every session, hit the weekly sync.",
+    ] },
+    { name:"THE SCIENTIST", role:"Nippard · Physique", calls:[
+      "Force-feed side + rear delts 2-3×/week. Your biggest visual lever, starved for 90 weeks.",
+      "Keep your favorite incline + straight-arm lat as the emotional anchors.",
+      "Warmups: 2 ramps on lift 1, 1 on lift 2, none after. Not on every lift.",
+      "Double progression: hit the top of the rep range on all sets, then +2.5kg.",
+    ] },
+    { name:"NICK BARE", role:"Hybrid · Engine", calls:[
+      "Build the aerobic base first: 120-150 Zone-2 min/week. It won't eat your gains.",
+      "Break the zero-run streak. Get off the machine, run/walk to protect the hip.",
+      "Intervals only from week 3, 1×/week max. Base first, sharpen second.",
+      "Go One More: never negotiate the whole session, only the next rep.",
+    ] },
+  ],
+
+  approval: {
+    verdict:"Approved: the delt force-feed, the Zone-2 base as the spine of the month, and the trap-bar hinge toward 200kg. Overruled: no carries stacked on the 6-lift days, no conventional deadlift until it's earned. Excitement is the reward. Consistency is the rent. You don't get to feel like a savage on Push day if you skipped the deposit on Tuesday.",
+    signoff:"— Goggins, Team Lead",
+  },
 };
