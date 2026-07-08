@@ -94,14 +94,16 @@ window.DATA = {
     },
   ],
 
+  /*LIFTS_START*/
   lifts: [
     { name: "BENCH PRESS", metric: "e1RM", unit: "kg", current: 80, goal: 100, start: 52, note: "Stalled for months. Volume, not singles, breaks it." },
     { name: "DEADLIFT", metric: "e1RM", unit: "kg", current: 160, goal: 200, start: 77, note: "Your best lift. 200 is a December target, not August." },
-    { name: "PULL-UP", metric: "MAX", unit: "reps", current: 6, goal: 10, start: 2, note: "Trained twice a week. Leaner bodyweight helps too." },
+    { name: "PULL-UP", metric: "MAX", unit: "reps", current: 8, goal: 10, start: 2, note: "Trained twice a week. Leaner bodyweight helps too." },
     { name: "INCLINE SMITH", metric: "e1RM", unit: "kg", current: 83, goal: 95, start: 34, note: "Climbed hard. Hold and refine, do not chase." },
     { name: "CHEST PRESS", metric: "e1RM", unit: "kg", current: 93, goal: 105, start: 50, note: "Strong. Maintenance work while cutting." },
     { name: "CABLE ROW", metric: "e1RM", unit: "kg", current: 110, goal: 120, start: 62, note: "Big back strength. Add upper-back width around it." },
   ],
+  /*LIFTS_END*/
 
   diagnostic: {
     span: "OCT 2024 - JUN 2026", training_days: 376,
