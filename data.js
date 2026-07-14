@@ -11,7 +11,7 @@ window.DATA = {
     approvedBy: "Built from 437 logged workouts + 3 research briefs",
     creed: "Easy days easy. Heavy days heavy. Meals eaten. Every day logged.",
     block: "1 · Jul 13 to Aug 11",
-    generated: "2026-07-09",
+    generated: "2026-07-14",
     start: "2026-07-13",
     floor: 20
   },
