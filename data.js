@@ -150,7 +150,7 @@ window.DATA = {
       note: "Your 77-session favorite. Beat 13. At 15 the bar gets heavier." },
     { name: "Incline DB e1RM", start: 39, current: 39, goal: 44, unit: "kg", source: "hevy",
       note: "Friday anchor. Rep chase at 30, then 32.5. The wall is 35 x 6." },
-    { name: "Pull-up day total", start: 8, current: 8, goal: 16, unit: "reps", source: "hevy",
+    { name: "Pull-up day total", start: 8, current: 6, goal: 16, unit: "reps", source: "hevy",
       note: "A-week anchor. Four sets, sum the reps, beat the total." },
     { name: "Stair 15:00 floors", start: 0, current: 0, goal: 0, unit: "floors", source: "manual",
       note: "Week 1 sets the baseline. Then beat it weekly. Test day target: baseline plus 20 percent." },
