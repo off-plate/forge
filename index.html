@@ -1,76 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>FORGE — 30-Day Hybrid Plan</title>
-<meta name="theme-color" content="#e4562d">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🔨</text></svg>">
+<title>FORGE · PROVING GROUND</title>
+<meta name="description" content="Michael's 30-day proving ground. Seven numbers. No rewrites.">
+<meta name="theme-color" content="#141210">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23141210'/%3E%3Cpath d='M6 21h9l-2.3-4.6H24l4.6-4.6H14l2.3 4.6H8.3z' fill='%23E63B2E'/%3E%3C/svg%3E">
+<link href="https://api.fontshare.com/v2/css?f[]=tanker@400&f[]=general-sans@500,600,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="wrap">
-  <header class="hd">
-    <div class="top">
-      <div>
-        <h1 id="h-title">FORGE</h1>
-        <div class="sub" id="h-sub"></div>
-        <div class="approve" id="h-approve"></div>
-      </div>
-      <div class="prog">
-        <div class="lab"><span>BLOCK PROGRESS</span><b id="p-frac">0 / 20</b></div>
-        <div class="track"><div class="fill good" id="p-fill"></div></div>
-        <div class="lab" style="margin-top:8px"><span>SESSION FLOOR (min 20)</span><b id="p-floor">0</b></div>
-      </div>
+
+<header class="top">
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 32 32" width="26" height="26" fill="none" aria-label="FORGE anvil mark">
+      <path d="M4 22h10l-2.5-5H24l5-5H12l2.5 5H6.5z" fill="currentColor"/>
+    </svg>
+    <span class="brand-name">FORGE</span>
+  </div>
+  <div class="top-right">
+    <span class="block-chip" id="week-chip">·</span>
+    <button data-theme-toggle aria-label="Switch to light mode"></button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="hero">
+    <p class="hero-kicker" id="hero-kicker"></p>
+    <h1 class="hero-title" id="hero-title">PROVING GROUND</h1>
+    <p class="hero-number" id="hero-number"></p>
+    <p class="hero-sub" id="hero-sub"></p>
+    <div class="built" id="built"></div>
+  </section>
+
+  <section class="section" id="scoreboard">
+    <h2 class="section-head">The Scoreboard</h2>
+    <p class="section-sub">Seven numbers plus the one that judges them all. Fed from Hevy on every sync.</p>
+    <div class="grid" id="goals-grid"></div>
+  </section>
+
+  <section class="section" id="week">
+    <h2 class="section-head">The Week</h2>
+    <p class="section-sub" id="week-sub">Anchors repeat every week so the numbers can climb. Menus alternate A and B so no two weeks feel the same.</p>
+    <div class="days" id="days"></div>
+  </section>
+
+  <section class="section" id="testday">
+    <h2 class="section-head">Test Day · <span id="testday-date"></span></h2>
+    <ol class="testday-list" id="testday-list"></ol>
+    <p class="baseline" id="baseline"></p>
+  </section>
+
+  <section class="section" id="deal">
+    <h2 class="section-head">The Deal</h2>
+    <ol class="deal-list" id="deal-list"></ol>
+    <div class="fuel">
+      <p class="fuel-line" id="fuel-line"></p>
+      <p class="fuel-sub" id="fuel-sub"></p>
     </div>
-  </header>
-
-  <nav id="nav">
-    <a href="#plan" class="on">Plan</a>
-    <a href="#calls">The Calls</a>
-    <a href="#calendar">30-Day</a>
-    <a href="#goals">Goals</a>
-    <a href="#nutrition">Nutrition</a>
-    <a href="#team">Team</a>
-  </nav>
-
-  <section id="plan">
-    <div class="sec-h"><h2>The Week</h2><div class="note" id="plan-note"></div></div>
-    <div class="grid" id="week"></div>
   </section>
 
-  <section id="calls">
-    <div class="sec-h"><h2>The Calls</h2><div class="note">Research verdicts on your exact questions. Sources named.</div></div>
-    <div class="grid g2" id="calls-grid"></div>
-  </section>
+</main>
 
-  <section id="calendar">
-    <div class="sec-h"><h2>30-Day Board</h2><div class="note">Tap a day when it's done. Nothing to log, just the streak.</div></div>
-    <div class="card" style="padding:16px">
-      <div class="cal" id="cal"></div>
-    </div>
-  </section>
-
-  <section id="goals">
-    <div class="sec-h"><h2>Goals</h2><div class="note">Honest numbers. Hevy-sourced bars auto-update at every sync.</div></div>
-    <div class="grid g2" id="goals-list"></div>
-    <div class="sec-h" style="margin-top:22px"><h2>Checkpoints</h2><div class="note">Tap when hit.</div></div>
-    <div class="card" id="checkpoints"></div>
-  </section>
-
-  <section id="nutrition">
-    <div class="sec-h"><h2>Nutrition</h2><div class="note" id="nut-head"></div></div>
-    <div class="card" id="nutrition-card"></div>
-  </section>
-
-  <section id="team">
-    <div class="sec-h"><h2>The Team</h2><div class="note">Who decided what. Lead has final say.</div></div>
-    <div class="grid g3" id="team-list"></div>
-    <div class="card" id="approval" style="margin-top:14px;padding:16px 18px"></div>
-  </section>
-
-  <div class="foot" id="foot"></div>
-</div>
+<footer class="foot">
+  <span id="foot-left"></span>
+  <span id="foot-right"></span>
+</footer>
 
 <script src="data.js"></script>
 <script src="app.js"></script>

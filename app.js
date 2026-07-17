@@ -1,198 +1,162 @@
-/* FORGE app — render + local persistence. No framework, no build. */
-(function(){
-  const D = window.DATA, $ = s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-  const el = h=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
-  const store = {
-    get:(k,d)=>{try{return JSON.parse(localStorage.getItem('forge_'+k))??d}catch(e){return d}},
-    set:(k,v)=>localStorage.setItem('forge_'+k,JSON.stringify(v)),
+/* FORGE · PROVING GROUND — render from data.js. No framework, no build. */
+(function () {
+  const D = window.DATA;
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  /* ---------- time math ---------- */
+  const DAY = 86400000;
+  const midnight = (d) => { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; };
+  const start = midnight(new Date(D.meta.start + "T00:00:00"));
+  const end = midnight(new Date(D.meta.end + "T00:00:00"));
+  const today = midnight(new Date());
+  const dayNum = Math.floor((today - start) / DAY) + 1; // day 1 = Jul 18
+  const total = Math.floor((end - start) / DAY) + 1;    // 30
+  const inBlock = dayNum >= 1 && dayNum <= total;
+
+  // Weeks: Jul 18-26 = week 1 (A), then Mon-based. A on odd weeks, B on even.
+  const firstMon = midnight(new Date("2026-07-20T00:00:00"));
+  let weekNum;
+  if (today < firstMon) weekNum = 1;
+  else weekNum = Math.min(4, Math.floor((today - firstMon) / (7 * DAY)) + 1);
+  const isA = weekNum % 2 === 1;
+  const menuKey = isA ? "menuA" : "menuB";
+  const killKey = isA ? "killA" : "killB";
+
+  /* ---------- header ---------- */
+  $("#week-chip").textContent = inBlock
+    ? `WEEK ${weekNum} · ${isA ? "A" : "B"}`
+    : today < start ? "STARTS JUL 18" : "BLOCK COMPLETE";
+
+  /* ---------- hero ---------- */
+  const dow = today.getDay();
+  const todayCard = D.days.find((d) => d.dow.includes(dow));
+
+  if (inBlock) {
+    $("#hero-kicker").textContent = `PROVING GROUND · DAY ${dayNum} OF ${total} · WEEK ${weekNum}${isA ? "A" : "B"}`;
+  } else if (today < start) {
+    $("#hero-kicker").textContent = "PROVING GROUND · STARTS SATURDAY JUL 18";
+  } else {
+    $("#hero-kicker").textContent = "PROVING GROUND · 30 DAYS DONE";
+  }
+
+  if (inBlock && todayCard && todayCard.kind === "iron") {
+    $("#hero-title").textContent = todayCard.title;
+    const a = todayCard.anchors[0];
+    $("#hero-number").textContent = a ? a.name : "";
+    $("#hero-sub").textContent = a ? a.rule : "";
+  } else if (inBlock && todayCard && todayCard.kind === "bonus") {
+    $("#hero-title").textContent = "Bonus Day";
+    $("#hero-number").textContent = "Easy engine or full rest";
+    $("#hero-sub").textContent = todayCard.note || "";
+  } else if (inBlock && todayCard && todayCard.kind === "rest") {
+    $("#hero-title").textContent = "Rest";
+    $("#hero-number").textContent = "Sleep before 1 AM";
+    $("#hero-sub").textContent = todayCard.note || "";
+  } else if (today < start) {
+    $("#hero-title").textContent = D.meta.codename;
+    $("#hero-number").textContent = "Day 0 · Set the baseline";
+    $("#hero-sub").textContent = D.baseline;
+  } else {
+    $("#hero-title").textContent = D.meta.codename;
+    $("#hero-number").textContent = "Block complete";
+    $("#hero-sub").textContent = D.meta.sub;
+  }
+
+  $("#built").innerHTML = D.builtFrom
+    .map((b) => `<div class="built-row"><b>${esc(b.k)}</b><span>${esc(b.v)}</span></div>`)
+    .join("");
+
+  /* ---------- scoreboard ---------- */
+  $("#goals-grid").innerHTML = D.goals
+    .map((g) => {
+      const hasGoal = g.goal > 0;
+      const desc = hasGoal && g.goal < g.start; // descending goal (bodyweight)
+      const span = hasGoal ? Math.max(Math.abs(g.goal - g.start), 0.0001) : 1;
+      const walked = desc ? g.start - g.current : g.current - g.start;
+      const pct = hasGoal ? Math.max(0, Math.min(100, (walked / span) * 100)) : 0;
+      const done = hasGoal && (desc ? g.current <= g.goal : g.current >= g.goal);
+      const target = hasGoal ? `/ ${g.goal} ${esc(g.unit)}` : esc(g.unit);
+      return `<article class="goal${done ? " done" : ""}">
+        <div class="goal-name"><span>${esc(g.name)}</span><span class="goal-src">${g.source === "hevy" ? "AUTO" : "MANUAL"}</span></div>
+        <div class="goal-nums"><span class="goal-current">${esc(g.current)}</span><span class="goal-target">${target}</span></div>
+        <div class="bar"><i data-w="${pct.toFixed(1)}"></i></div>
+        <p class="goal-note">${esc(g.note)}</p>
+      </article>`;
+    })
+    .join("");
+
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() =>
+      document.querySelectorAll(".bar i").forEach((i) => (i.style.width = i.dataset.w + "%"))
+    )
+  );
+
+  /* ---------- week ---------- */
+  const DOW_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const order = [1, 2, 3, 4, 5, 6, 0];
+  $("#week-sub").textContent = `Week ${weekNum} runs the ${isA ? "A" : "B"} menus. ` + $("#week-sub").textContent;
+
+  $("#days").innerHTML = order
+    .map((n) => {
+      const d = D.days.find((x) => x.dow.includes(n));
+      if (!d) return "";
+      const isToday = inBlock && n === dow;
+      const kindLabel = d.kind === "iron" ? "IRON" : d.kind === "bonus" ? "BONUS" : "REST";
+      const anchors = d.anchors
+        .map((a) => `<div class="anchor"><b>${esc(a.name)}</b><span>${esc(a.rule)}</span></div>`)
+        .join("");
+      const menu = (d[menuKey] || [])
+        .map((m) => `<li>${esc(m)}</li>`)
+        .join("");
+      const kill = d[killKey] ? `<div class="kill">${esc(d[killKey])}</div>` : "";
+      const note = d.note ? `<p class="day-note">${esc(d.note)}</p>` : "";
+      return `<article class="day ${d.kind}${isToday ? " today" : ""}">
+        <div class="day-when">
+          <span class="day-dow">${DOW_NAMES[n]}</span>
+          <span class="day-kind">${kindLabel}</span>
+          ${d.time ? `<span class="day-time">${esc(d.time)}</span>` : ""}
+          ${isToday ? `<span class="today-tag">Today</span>` : ""}
+        </div>
+        <div>
+          <h3 class="day-title">${esc(d.title)}</h3>
+          ${anchors}
+          <ul class="menu">${menu}</ul>
+          ${kill}
+          ${note}
+        </div>
+      </article>`;
+    })
+    .join("");
+
+  /* ---------- test day + deal ---------- */
+  $("#testday-date").textContent = D.testday.date;
+  $("#testday-list").innerHTML = D.testday.items.map((t) => `<li>${esc(t)}</li>`).join("");
+  $("#baseline").textContent = D.baseline;
+  $("#deal-list").innerHTML = D.deal.map((t) => `<li>${esc(t)}</li>`).join("");
+  $("#fuel-line").textContent = D.nutrition.line;
+  $("#fuel-sub").textContent = D.nutrition.sub;
+
+  /* ---------- footer ---------- */
+  $("#foot-left").textContent = `${D.meta.codename} · ${D.meta.start} to ${D.meta.end} · test day ${D.meta.testDay}`;
+  $("#foot-right").textContent = `refreshed ${D.meta.generated} from Hevy`;
+
+  /* ---------- theme toggle ---------- */
+  const SUN = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  const MOON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  const root = document.documentElement;
+  const btn = document.querySelector("[data-theme-toggle]");
+  let theme = "dark"; // war room default
+  try { theme = localStorage.getItem("forge_theme") || theme; } catch (e) {}
+  const apply = () => {
+    root.setAttribute("data-theme", theme);
+    btn.innerHTML = theme === "dark" ? SUN : MOON;
+    btn.setAttribute("aria-label", "Switch to " + (theme === "dark" ? "light" : "dark") + " mode");
   };
-
-  // header
-  $('#h-title').innerHTML = `FORGE <span>· ${D.meta.codename}</span>`;
-  $('#h-sub').textContent = D.meta.oneLiner;
-  $('#h-approve').innerHTML = `✓ ${D.meta.approvedBy}`;
-  $('#foot').innerHTML = `"${D.meta.creed}"<br>Block ${D.meta.block} · updated ${D.meta.generated}`;
-
-  // ---- week cards (single template; toggle only if multiple) ----
-  const plan = $('#plan'), wk = $('#week');
-  const wkeys = Object.keys(D.weeks);
-  let toggle = null;
-  if(wkeys.length > 1){
-    toggle = el(`<div class="wktoggle"></div>`);
-    wkeys.forEach(k=>{
-      const b = el(`<button data-k="${k}">${D.weeks[k].name} · ${D.weeks[k].tag}</button>`);
-      b.addEventListener('click',()=>renderWeek(k));
-      toggle.appendChild(b);
-    });
-    plan.insertBefore(toggle, wk);
-  }
-  const blurb = el(`<p class="wkblurb"></p>`);
-  plan.insertBefore(blurb, wk);
-
-  function renderWeek(k){
-    if(toggle) [...toggle.children].forEach(b=>b.classList.toggle('on',b.dataset.k===k));
-    blurb.textContent = D.weeks[k].blurb;
-    wk.innerHTML='';
-    D.weeks[k].days.forEach((d,i)=>{
-      const rows = d.exercises.map(e=>`
-        <tr>
-          <td class="name">${e.name}${e.tag?`<span class="pill ${e.tag==='void'?'void':''}">${e.tag}</span>`:''}
-            ${e.sub?`<small>${e.sub}</small>`:''}
-            ${e.wu?`<div class="wu">↑ ${e.wu}</div>`:''}</td>
-          <td class="prescr">${e.prescr}</td>
-        </tr>`).join('');
-      const card = el(`
-        <div class="card day ${d.kind} ${i===0?'open':''}">
-          <div class="dhead">
-            <span class="tagdot"></span>
-            <span class="dtitle">${d.title}</span>
-            <span class="dkind">${d.tag}</span>
-            <span class="chev">▸</span>
-          </div>
-          <div class="dbody">
-            ${d.why?`<p class="why">${d.why}</p>`:''}
-            ${d.warmup?`<p class="wu" style="font-size:12px;color:var(--steel);margin:0 0 10px">${d.warmup}</p>`:''}
-            <table class="ex"><thead><tr><th>Exercise</th><th>Prescription</th></tr></thead><tbody>${rows}</tbody></table>
-          </div>
-        </div>`);
-      card.querySelector('.dhead').addEventListener('click',()=>card.classList.toggle('open'));
-      wk.appendChild(card);
-    });
-  }
-  renderWeek('A');
-  $('#plan-note').textContent = "One repeating week. Tap a day to expand.";
-
-  // ---- the calls (research verdicts + volume table) ----
-  const cg = $('#calls-grid');
-  const volTable = `<div style="margin-top:10px">` + D.volume.map(v=>`
-      <div class="cp" style="padding:8px 0">
-        <div class="txt" style="flex:1"><div class="t" style="${v.hot?'color:var(--accent)':''}">${v.m}</div></div>
-        <div class="bignum" style="font-size:15px;${v.hot?'color:var(--accent)':''}">${v.sets}${typeof v.sets==='number'?' sets':''}</div>
-        <div class="when" style="color:var(--muted);min-width:60px;text-align:right">${v.freq}</div>
-      </div>`).join('') + `</div>`;
-  D.calls.forEach(c=>{
-    cg.appendChild(el(`
-      <div class="card call" style="padding:16px 18px">
-        <div class="ct"><span class="cq">${c.t}</span><span class="cv">${c.verdict}</span></div>
-        ${c.body.map(p=>`<p>${p}</p>`).join('')}
-        ${c.table?volTable:''}
-        <div class="csrc">${c.src}</div>
-      </div>`));
+  btn.addEventListener("click", () => {
+    theme = theme === "dark" ? "light" : "dark";
+    try { localStorage.setItem("forge_theme", theme); } catch (e) {}
+    apply();
   });
-
-  // ---- how it grows (4-week arc) ----
-  const arc = el(`<div class="card arc"></div>`);
-  arc.innerHTML = `<div class="arc-h">How the block grows, week by week</div>` +
-    D.arc.map(a=>`<div class="arc-row"><div class="wk">${a.wk}</div>
-      <div class="ac"><span class="lbl">IRON</span> ${a.iron}</div>
-      <div class="ac"><span class="lbl">ENGINE</span> ${a.engine}</div></div>`).join('');
-  plan.appendChild(arc);
-
-  // ---- 30-day calendar ----
-  const cal = $('#cal'), DAYS=30;
-  const checks = new Set(store.get('cal',[]));
-  const startDate = new Date((D.meta.start||D.meta.generated)+'T00:00:00');
-  const today = new Date();
-  const dayNow = Math.floor((today - startDate)/86400000)+1;
-  let restTotal=0, sessTotal=0;
-  for(let i=0;i<DAYS;i++){
-    const type = D.weekPattern[i % D.weekPattern.length];
-    const dt = D.dayTypes[type];
-    const isRest = type==='rest';
-    if(isRest) restTotal++; else sessTotal++;
-    const done = checks.has(i);
-    const cell = el(`
-      <div class="cell ${dt.kind} ${isRest?'rest':''} ${done?'done':''} ${(i+1)===dayNow?'today':''}" data-i="${i}">
-        <span class="d">${i+1}</span><span class="k">${dt.label}</span>
-      </div>`);
-    if(!isRest){
-      cell.addEventListener('click',()=>{
-        if(checks.has(i)){checks.delete(i);cell.classList.remove('done');}
-        else{checks.add(i);cell.classList.add('done');}
-        store.set('cal',[...checks]); updateProgress();
-      });
-    }
-    cal.appendChild(cell);
-  }
-  function updateProgress(){
-    const done=[...checks].filter(i=>D.weekPattern[i%7]!=='rest').length;
-    const floor=D.meta.floor||12;
-    $('#p-frac').textContent = `${done} / ${sessTotal}`;
-    $('#p-fill').style.width = Math.round(done/sessTotal*100)+'%';
-    const floorEl=$('#p-floor');
-    floorEl.textContent = `${done} / ${floor} ${done>=floor?'✓':''}`;
-    floorEl.style.color = done>=floor ? 'var(--good)' : (done<floor/2?'var(--accent)':'var(--ink)');
-  }
-  updateProgress();
-
-  // ---- goals ----
-  const gl = $('#goals-list');
-  D.goals.forEach(g=>{
-    const rng = (g.goal-g.start)||1;
-    const pct = Math.max(0,Math.min(100, ((g.current-g.start)/rng)*100));
-    const dir = g.goal<g.start ? 'down' : 'up';
-    const pctDown = dir==='down' ? Math.max(0,Math.min(100,((g.start-g.current)/(g.start-g.goal))*100)) : pct;
-    const shown = dir==='down'?pctDown:pct;
-    gl.appendChild(el(`
-      <div class="card goal">
-        <div class="gt"><span class="n">${g.name}</span>
-          <span class="v"><b>${g.current}</b> / ${g.goal} ${g.unit}</span></div>
-        <div class="track"><div class="fill ${g.kind==='good'?'good':g.kind==='steel'?'steel':''}" data-w="${shown}"></div></div>
-        <div class="cap"><span>start ${g.start}</span><span>${g.source==='hevy'?'auto from Hevy':'manual'} · ${Math.round(shown)}%</span></div>
-        <div class="note">${g.note}</div>
-      </div>`));
-  });
-
-  // ---- checkpoints ----
-  const cpc = $('#checkpoints');
-  const cpChecks = new Set(store.get('cp',[]));
-  D.checkpoints.forEach((c,i)=>{
-    const row = el(`
-      <div class="cp">
-        <input type="checkbox" class="chk" ${cpChecks.has(i)?'checked':''}>
-        <div class="txt"><div class="t">${c.t}</div><div class="d">${c.d}</div></div>
-        <div class="when">${c.when}</div>
-      </div>`);
-    row.querySelector('.chk').addEventListener('change',e=>{
-      if(e.target.checked)cpChecks.add(i);else cpChecks.delete(i);
-      store.set('cp',[...cpChecks]);
-    });
-    cpc.appendChild(row);
-  });
-
-  // ---- nutrition ----
-  const n = D.nutrition;
-  $('#nut-head').textContent = n.head;
-  $('#nutrition-card').innerHTML =
-    `<div class="rule"><span class="ic">◆</span><div><b>Protein ${n.protein}/day</b> · <b>Calories ${n.calFloor}</b> · <b>Water ${n.water}</b></div></div>`
-    + n.rules.map(r=>`<div class="rule"><span class="ic">→</span><div>${r}</div></div>`).join('');
-
-  // ---- team ----
-  const tl = $('#team-list');
-  D.team.forEach(c=>tl.appendChild(el(`
-    <div class="card coach"><div class="cn">${c.name}</div><div class="cr">${c.role}</div>
-      <ul>${c.calls.map(x=>`<li>${x}</li>`).join('')}</ul></div>`)));
-  $('#approval').innerHTML = `<div style="font-weight:700;margin-bottom:6px">Final ruling</div>
-    <div style="font-size:13.5px;color:var(--muted);line-height:1.6">${D.approval.verdict}</div>
-    <div style="margin-top:8px;font-weight:700;color:var(--accent)">${D.approval.signoff}</div>`;
-
-  // ---- animate bars on view ----
-  const io=new IntersectionObserver((es)=>{
-    es.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.querySelectorAll('.fill[data-w]').forEach(f=>f.style.width=f.dataset.w+'%');
-        io.unobserve(e.target);
-      }
-    });
-  },{threshold:.2});
-  $$('#goals-list .goal').forEach(x=>io.observe(x));
-
-  // ---- nav active on scroll ----
-  const links=[...$$('nav a')], secs=links.map(a=>$(a.getAttribute('href')));
-  const nio=new IntersectionObserver((es)=>{
-    es.forEach(e=>{
-      if(e.isIntersecting){const id='#'+e.target.id;links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')===id));}
-    });
-  },{rootMargin:'-40% 0px -55% 0px'});
-  secs.forEach(s=>s&&nio.observe(s));
+  apply();
 })();
