@@ -117,13 +117,13 @@ window.DATA = {
       ],
       menuA: [
         "Leg Press 3 x 12 · knee insurance",
-        "EZ Curl + Overhead Extension superset, 3 rounds",
+        "Hammer Curl + Pushdown superset, 3 rounds",
         "Dead Hang 2 x max",
         "Optional: 20-30 min easy Z2 after"
       ],
       menuB: [
         "Leg Press 3 x 12 · knee insurance",
-        "Hammer Curl + Pushdown superset, 3 rounds",
+        "Preacher Curl + Single-Arm Pushdown superset, 3 rounds",
         "Dead Hang 2 x max",
         "Optional: 20-30 min easy Z2 after"
       ],
