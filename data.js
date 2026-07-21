@@ -9,15 +9,15 @@ window.DATA = {
 
   meta: {
     codename: "PROVING GROUND",
-    tagline: "Four locked weeks. Seven numbers. No rewrites.",
+    tagline: "Four locked weeks. Five iron days. No rewrites.",
     sub: "Built from 445 logged workouts and three interview answers: alternating weeks, a number to chase every session, and permission to empty the tank once per day.",
     start: "2026-07-20",
     end: "2026-08-16",
     testDay: "2026-08-15",
     vacation: "2026-08-20",
     generated: "2026-07-21",
-    sessionsTarget: 16,
-    floorPerWeek: 4
+    sessionsTarget: 20,
+    floorPerWeek: 5
   },
 
   creed: "Locked for four weeks. Miss a day, run the next one as written. After the kill set, go home.",
@@ -34,8 +34,8 @@ window.DATA = {
     {
       dow: [1], id: "mon", title: "Push · Boss Fight", time: "~50 min", kind: "iron",
       anchors: [
-        { name: "Bench Press (Barbell)", rule: "Top set of 5. W1 57.5. +2.5 every week the 5 land. Ramp: bar x10, 40x5, 50x3, top set. Then 2x6 at minus 10 kg." },
-        { name: "Incline Smith @ 50", rule: "Beat 13 reps. At 15, add 2.5 and reset to ~10." }
+        { name: "Bench Press (Barbell)", rule: "Top set of 5. +2.5 every week the 5 land. Current target lives in the Hevy routine." },
+        { name: "Incline Smith", rule: "Rep chase. Beat the number in the routine note. At 15, the bar moves up automatically." }
       ],
       menuA: [
         "Seated Shoulder Press (Smith) 2 x 8-12",
@@ -49,26 +49,27 @@ window.DATA = {
       killB: "Cable Fly Crossovers: failure, then lengthened partials."
     },
     {
-      dow: [2], id: "tue", title: "Bonus · Easy Engine", time: "30-40 min", kind: "bonus",
-      anchors: [],
+      dow: [2], id: "tue", title: "Strength + Engine", time: "~60 min", kind: "iron",
+      anchors: [
+        { name: "Deadlift (Barbell)", rule: "Top set of 5. +5 every week it lands clean. Ramp in the routine." },
+        { name: "Stair Scoreboard", rule: "15 minutes. Count floors. Beat last week." }
+      ],
       menuA: [
-        "StairMaster Z2, talk-test pace, podcast on",
-        "Plank 3 x 30-45 s · Farmer carry 3 x 30 m",
+        "Leg Press 3 x 12 · knee insurance",
         "Dead Hang 2 x max"
       ],
       menuB: [
-        "StairMaster Z2, talk-test pace, podcast on",
-        "Side plank 3 x 30 s per side · Suitcase hold 3 x 30 s",
+        "Leg Press 3 x 12 · knee insurance",
         "Dead Hang 2 x max"
       ],
-      killA: "", killB: "",
-      note: "Bonus day. Skipping it is not a failure. The floor is 4."
+      killA: "The stair 15 is the kill. All of it.",
+      killB: "The stair 15 is the kill. All of it."
     },
     {
       dow: [3], id: "wed", title: "Pull", time: "~45-50 min", kind: "iron",
       anchors: [
-        { name: "A weeks: Pull-Up total", rule: "4 sets bodyweight. Sum the reps. Beat last A-week's total." },
-        { name: "B weeks: Reverse-Grip Pulldown", rule: "Top set. Beat 70 x 7." }
+        { name: "A weeks: Pull-Up total", rule: "4 sets bodyweight. Sum the reps. Beat the total in the routine note." },
+        { name: "B weeks: Reverse-Grip Pulldown", rule: "Top set. Beat the number in the routine note." }
       ],
       menuA: [
         "Seated Row (Machine) 3 x 8-12 · you did 70 x 16, go heavier",
@@ -78,23 +79,15 @@ window.DATA = {
       menuB: [
         "Bent Over Row (Barbell) 3 x 6-10 · start 45-50",
         "Reverse Fly Single Arm (Cable) 2 x 12-15",
-        "Incline DB Curl 2 x 8-12"
+        "Seated Incline Curl (DB) 2 x 8-12"
       ],
       killA: "Band-Assisted Pull-Up: failure, then lengthened partials.",
       killB: "Band-Assisted Pull-Up: failure, then lengthened partials."
     },
     {
-      dow: [4], id: "thu", title: "Rest", time: "", kind: "rest",
-      anchors: [],
-      menuA: ["Sleep before 1 AM", "8-10k steps", "Three real meals"],
-      menuB: ["Sleep before 1 AM", "8-10k steps", "Three real meals"],
-      killA: "", killB: "",
-      note: "Short sleep shifts diet losses from fat to muscle. Sleep is training."
-    },
-    {
-      dow: [5], id: "fri", title: "Push · Delts + Upper Chest", time: "~45 min", kind: "iron",
+      dow: [4], id: "thu", title: "Delts + Upper Chest", time: "~45 min", kind: "iron",
       anchors: [
-        { name: "Incline DB Press", rule: "Rep chase at 30 kg. At 12 reps, move to 32.5. The wall: 35 x 6." }
+        { name: "Incline DB Press", rule: "Rep chase. At 12 reps the dumbbells move up automatically. The wall: 35 x 6." }
       ],
       menuA: [
         "Chest Fly (Machine) 2 x 10-15",
@@ -110,33 +103,37 @@ window.DATA = {
       killB: "Chest Fly: failure, then lengthened partials."
     },
     {
-      dow: [6], id: "sat", title: "Strength + Engine", time: "up to 2 h", kind: "iron",
-      anchors: [
-        { name: "Deadlift (Barbell)", rule: "Top set of 5. W1 135. +5 every week it lands clean. Ramp: 60x5, 100x3, 120x1, top set." },
-        { name: "Stair Scoreboard", rule: "15 minutes on the StairMaster. Count floors. Beat last week." }
-      ],
+      dow: [5], id: "fri", title: "Arms + Engine", time: "~45 min", kind: "iron",
+      anchors: [],
       menuA: [
-        "Leg Press 3 x 12 · knee insurance",
         "Hammer Curl + Pushdown superset, 3 rounds",
-        "Dead Hang 2 x max",
-        "Optional: 20-30 min easy Z2 after"
+        "Preacher Curl (Barbell) 2 x 8-12",
+        "Finisher: 20 min easy Z2 stairs"
       ],
       menuB: [
-        "Leg Press 3 x 12 · knee insurance",
         "Preacher Curl + Single-Arm Pushdown superset, 3 rounds",
-        "Dead Hang 2 x max",
-        "Optional: 20-30 min easy Z2 after"
+        "Seated Incline Curl (DB) 2 x 8-12",
+        "Finisher: 20 min easy Z2 stairs"
       ],
-      killA: "The stair 15 is the kill. All of it.",
-      killB: "The stair 15 is the kill. All of it."
+      killA: "Single-arm pushdown: failure, then drop and burn it out.",
+      killB: "Triceps pushdown: failure, then drop and burn it out.",
+      note: "If bench AND deadlift top sets fall two weeks straight, this day becomes easy Z2 until they climb. The log decides."
     },
     {
-      dow: [0], id: "sun", title: "Bonus · Easy Engine or Rest", time: "30-40 min", kind: "bonus",
+      dow: [6], id: "sat", title: "Optional 6th · Long Engine", time: "45-60 min", kind: "bonus",
       anchors: [],
-      menuA: ["Same as Tuesday. Or full rest. Both count as winning."],
-      menuB: ["Same as Tuesday. Or full rest. Both count as winning."],
+      menuA: ["Long easy Z2 climb, talk-test pace, podcast on", "Dead Hang 2 x easy", "Or full rest. Both count."],
+      menuB: ["Long easy Z2 climb, talk-test pace, podcast on", "Dead Hang 2 x easy", "Or full rest. Both count."],
       killA: "", killB: "",
-      note: "Bonus day. The floor is 4 sessions a week."
+      note: "Never required. Test day Aug 15 takes this slot in week 4."
+    },
+    {
+      dow: [0], id: "sun", title: "Rest", time: "", kind: "rest",
+      anchors: [],
+      menuA: ["Sleep before 1 AM", "8-10k steps", "Three real meals"],
+      menuB: ["Sleep before 1 AM", "8-10k steps", "Three real meals"],
+      killA: "", killB: "",
+      note: "The one true off day. The forge cools so Monday can burn. Non-negotiable."
     }
   ],
 
@@ -154,8 +151,8 @@ window.DATA = {
       note: "A-week anchor. Four sets, sum the reps, beat the total." },
     { name: "Stair 15:00 floors", start: 0, current: 0, goal: 0, unit: "floors", source: "manual",
       note: "Week 1 sets the baseline. Then beat it weekly. Test day target: baseline plus 20 percent." },
-    { name: "Sessions logged", start: 0, current: 1, goal: 16, unit: "sessions", source: "hevy",
-      note: "The adherence score. Four a week, 15 of 16 is a pass. This is the real test." },
+    { name: "Sessions logged", start: 0, current: 1, goal: 20, unit: "sessions", source: "hevy",
+      note: "The adherence score. Five a week, Mon to Fri. 18 of 20 is a pass. This is the real test." },
     { name: "Bodyweight", start: 96, current: 96, goal: 91, unit: "kg", source: "manual",
       note: "Byproduct, not target. 2400 eaten, cut capped at 0.6 per week. Vacation marker: 90-91." }
   ],
@@ -163,7 +160,7 @@ window.DATA = {
 
   deal: [
     "Locked four weeks, Mon Jul 20 to Sun Aug 16. No rewrites, no plan-hopping. A missed day means the next scheduled day runs as written. Never doubled.",
-    "The floor is 4 sessions a week. Bonus days are bonus.",
+    "Five iron days a week, Mon to Fri. Saturday is the optional 6th. Sunday is rest, full stop.",
     "One kill set per session. Everything after it is ego, not progress. Go home.",
     "Sleep before 1 AM. The diet's fat-vs-muscle split is decided in bed.",
     "Weekly audit from Hevy. Beaten numbers get celebrated. Dodged anchors get named."
