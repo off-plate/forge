@@ -10,11 +10,11 @@
   const start = midnight(new Date(D.meta.start + "T00:00:00"));
   const end = midnight(new Date(D.meta.end + "T00:00:00"));
   const today = midnight(new Date());
-  const dayNum = Math.floor((today - start) / DAY) + 1; // day 1 = Jul 18
-  const total = Math.floor((end - start) / DAY) + 1;    // 30
+  const dayNum = Math.floor((today - start) / DAY) + 1; // day 1 = Mon Jul 20
+  const total = Math.floor((end - start) / DAY) + 1;    // 28 (four weeks)
   const inBlock = dayNum >= 1 && dayNum <= total;
 
-  // Weeks: Jul 18-26 = week 1 (A), then Mon-based. A on odd weeks, B on even.
+  // Weeks: Mon-based from Jul 20. A on odd weeks, B on even.
   const firstMon = midnight(new Date("2026-07-20T00:00:00"));
   let weekNum;
   if (today < firstMon) weekNum = 1;

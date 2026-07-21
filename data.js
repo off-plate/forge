@@ -9,18 +9,18 @@ window.DATA = {
 
   meta: {
     codename: "PROVING GROUND",
-    tagline: "30 locked days. Seven numbers. No rewrites.",
+    tagline: "Four locked weeks. Seven numbers. No rewrites.",
     sub: "Built from 445 logged workouts and three interview answers: alternating weeks, a number to chase every session, and permission to empty the tank once per day.",
-    start: "2026-07-18",
+    start: "2026-07-20",
     end: "2026-08-16",
     testDay: "2026-08-15",
     vacation: "2026-08-20",
     generated: "2026-07-21",
-    sessionsTarget: 17,
+    sessionsTarget: 16,
     floorPerWeek: 4
   },
 
-  creed: "Locked for 30 days. Miss a day, run the next one as written. After the kill set, go home.",
+  creed: "Locked for four weeks. Miss a day, run the next one as written. After the kill set, go home.",
 
   builtFrom: [
     { k: "A / B weeks", v: "No two weeks feel the same. Anchors repeat, menus alternate." },
@@ -29,7 +29,7 @@ window.DATA = {
   ],
 
   /* Weekly schedule. app.js picks today's card and the A/B menu by week.
-     Weeks: Jul 18-26 = A, Jul 27-Aug 2 = B, Aug 3-9 = A, Aug 10-16 = B. */
+     Weeks (Day 1 = Mon Jul 20): Jul 20-26 = A, Jul 27-Aug 2 = B, Aug 3-9 = A, Aug 10-16 = B. */
   days: [
     {
       dow: [1], id: "mon", title: "Push · Boss Fight", time: "~50 min", kind: "iron",
@@ -154,15 +154,15 @@ window.DATA = {
       note: "A-week anchor. Four sets, sum the reps, beat the total." },
     { name: "Stair 15:00 floors", start: 0, current: 0, goal: 0, unit: "floors", source: "manual",
       note: "Week 1 sets the baseline. Then beat it weekly. Test day target: baseline plus 20 percent." },
-    { name: "Sessions logged", start: 0, current: 2, goal: 17, unit: "sessions", source: "hevy",
-      note: "The adherence score. 16 of 17 is a pass. This is the real test." },
+    { name: "Sessions logged", start: 0, current: 1, goal: 16, unit: "sessions", source: "hevy",
+      note: "The adherence score. Four a week, 15 of 16 is a pass. This is the real test." },
     { name: "Bodyweight", start: 96, current: 96, goal: 91, unit: "kg", source: "manual",
       note: "Byproduct, not target. 2400 eaten, cut capped at 0.6 per week. Vacation marker: 90-91." }
   ],
   /*GOALS_END*/
 
   deal: [
-    "Locked 30 days. No rewrites, no plan-hopping. A missed day means the next scheduled day runs as written. Never doubled.",
+    "Locked four weeks, Mon Jul 20 to Sun Aug 16. No rewrites, no plan-hopping. A missed day means the next scheduled day runs as written. Never doubled.",
     "The floor is 4 sessions a week. Bonus days are bonus.",
     "One kill set per session. Everything after it is ego, not progress. Go home.",
     "Sleep before 1 AM. The diet's fat-vs-muscle split is decided in bed.",
