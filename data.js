@@ -72,16 +72,17 @@ window.DATA = {
         { name: "B weeks: Reverse-Grip Pulldown", rule: "Top set. Beat the number in the routine note." }
       ],
       menuA: [
-        "Seated Row (Machine) 3 x 8-12 · you did 70 x 16, go heavier",
-        "Straight-Arm Pulldown 2 x 12-15",
-        "Preacher Curl (Barbell) 2 x 8-12"
+        "Seated Row (Machine) 85 / 80 / 80 x 10 · beat your 85 x 10",
+        "Close-Grip Pulldown 2 x 8 @ 60 · your 77-session favorite",
+        "Straight-Arm Pulldown 2 x 13-15",
+        "Preacher Curl (Machine) 2 x 8 @ 20"
       ],
       menuB: [
         "Bent Over Row (Barbell) 3 x 6-10 · start 45-50",
         "Reverse Fly Single Arm (Cable) 2 x 12-15",
         "Seated Incline Curl (DB) 2 x 8-12"
       ],
-      killA: "Band-Assisted Pull-Up: failure, then lengthened partials.",
+      killA: "Assisted Pull-Up @ 35: failure, then lengthened partials.",
       killB: "Band-Assisted Pull-Up: failure, then lengthened partials."
     },
     {
