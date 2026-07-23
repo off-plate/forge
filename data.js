@@ -15,7 +15,7 @@ window.DATA = {
     end: "2026-08-16",
     testDay: "2026-08-15",
     vacation: "2026-08-20",
-    generated: "2026-07-21",
+    generated: "2026-07-23",
     sessionsTarget: 20,
     floorPerWeek: 5
   },
@@ -147,11 +147,11 @@ window.DATA = {
       note: "Your 77-session favorite. Beat 13. At 15 the bar gets heavier." },
     { name: "Incline DB e1RM", start: 39, current: 39, goal: 44, unit: "kg", source: "hevy",
       note: "Friday anchor. Rep chase at 30, then 32.5. The wall is 35 x 6." },
-    { name: "Pull-up day total", start: 8, current: 13, goal: 16, unit: "reps", source: "hevy",
+    { name: "Pull-up day total", start: 8, current: 17, goal: 16, unit: "reps", source: "hevy",
       note: "A-week anchor. Four sets, sum the reps, beat the total." },
     { name: "Stair 15:00 floors", start: 0, current: 0, goal: 0, unit: "floors", source: "manual",
       note: "Week 1 sets the baseline. Then beat it weekly. Test day target: baseline plus 20 percent." },
-    { name: "Sessions logged", start: 0, current: 1, goal: 20, unit: "sessions", source: "hevy",
+    { name: "Sessions logged", start: 0, current: 2, goal: 20, unit: "sessions", source: "hevy",
       note: "The adherence score. Five a week, Mon to Fri. 18 of 20 is a pass. This is the real test." },
     { name: "Bodyweight", start: 96, current: 96, goal: 91, unit: "kg", source: "manual",
       note: "Byproduct, not target. 2400 eaten, cut capped at 0.6 per week. Vacation marker: 90-91." }
