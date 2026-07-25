@@ -23,7 +23,7 @@ window.DATA = {
   creed: "Locked for four weeks. Miss a day, run the next one as written. After the kill set, go home.",
 
   builtFrom: [
-    { k: "A / B weeks", v: "A = HEAVY week (6-10 reps, top sets). B = VOLUME week (10-15+, more sets). Anchors stay heavy in both." },
+    { k: "A / B weeks", v: "A = HEAVY week (6-10 reps, top sets). B = PUMP week: 40-60% weights, 15-25 reps, 60s rests. Only the bench + deadlift top sets stay heavy." },
     { k: "Chase the number", v: "Every session opens with one number to beat from last time." },
     { k: "Empty the tank", v: "One kill set per session: failure, then drops or lengthened partials." }
   ],
@@ -44,9 +44,9 @@ window.DATA = {
         "Engine flush: 10-12 min easy stairs"
       ],
       menuB: [
-        "Volume backoffs 3 x 8",
-        "Standing Military Press 3 x 10-12",
-        "Cable Fly Crossovers 2 x 15 · Laterals 3 x 15",
+        "PUMP backoffs: 40 kg x 15-20, three sets",
+        "Incline Smith 3 x 18-20 @ 35 · Military Press 2 x 15",
+        "Crossovers 2 x 20 · Laterals 3 x 20",
         "Engine flush: 10-12 min easy stairs"
       ],
       killA: "Chest Press machine: failure, then double drop.",
@@ -63,8 +63,8 @@ window.DATA = {
         "Dead Hang 2 x max"
       ],
       menuB: [
-        "Romanian Deadlift 2 x 10 · hinge volume",
-        "Leg Press 3 x 15 lighter",
+        "Romanian Deadlift 2 x 12-15 light",
+        "Leg Press 3 x 20 @ 80 · quads on fire before the stairs",
         "Dead Hang 2 x max"
       ],
       killA: "The stair 15 is the kill. Floors are the score.",
@@ -83,9 +83,9 @@ window.DATA = {
         "Engine flush: 10-12 min easy stairs"
       ],
       menuB: [
-        "V-Grip Cable Row 3 x 12 · your 58-session favorite",
-        "Lat Pulldown 2 x 12",
-        "Reverse Fly 2 x 15 · Reverse Single-Arm Curl 2 x 12",
+        "V-Grip Cable Row 3 x 18-20 @ 45 · your 58-session favorite",
+        "Lat Pulldown 2 x 18-20 @ 40",
+        "Reverse Fly 2 x 20 · Reverse Single-Arm Curl 2 x 18",
         "Engine flush: 10-12 min easy stairs"
       ],
       killA: "Assisted Pull-Up @ 35: failure, then lengthened partials.",
@@ -103,9 +103,9 @@ window.DATA = {
         "Chest Fly 2 x 12 · Engine flush 10-12 min"
       ],
       menuB: [
-        "Single-Arm Crossover 2 x 15 · Laterals (DB) 3 x 18",
-        "Rear Delt Fly 2 x 18 · your addition, permanent",
-        "Seated Shoulder Press (Smith) 2 x 13",
+        "Single-Arm Crossover 2 x 20 · Laterals (DB) 3 x 20",
+        "Rear Delt Fly 2 x 20 · your addition, permanent",
+        "Seated Shoulder Press (Smith) 2 x 18-20 @ 20",
         "Engine flush: 10-12 min easy stairs"
       ],
       killA: "Lateral-raise mechanical drop: lighter, partials.",
@@ -122,10 +122,10 @@ window.DATA = {
         "Engine flush: 10-12 min easy stairs"
       ],
       menuB: [
-        "Straight-Arm Pulldown 3 x 15 · your #1, 93 sessions",
-        "Reverse-Grip Pulldown 3 x 12",
-        "BICEPS block: preacher + reverse single-arm curl",
-        "THEN triceps block: single-arm + pushdown, high reps",
+        "Straight-Arm Pulldown 3 x 18-20 @ 20 · your #1, 93 sessions",
+        "Reverse-Grip Pulldown 3 x 15-18 @ 45",
+        "BICEPS block 15-20s, THEN triceps block 20-25s",
+        "Kill set at 25+ reps. Burn it all down.",
         "Engine flush: 10-12 min easy stairs"
       ],
       killA: "Cable bicep curl: failure, then drop and burn it out.",
