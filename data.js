@@ -23,7 +23,7 @@ window.DATA = {
   creed: "Locked for four weeks. Miss a day, run the next one as written. After the kill set, go home.",
 
   builtFrom: [
-    { k: "A / B weeks", v: "No two weeks feel the same. Anchors repeat, menus alternate." },
+    { k: "A / B weeks", v: "A = HEAVY week (6-10 reps, top sets). B = VOLUME week (10-15+, more sets). Anchors stay heavy in both." },
     { k: "Chase the number", v: "Every session opens with one number to beat from last time." },
     { k: "Empty the tank", v: "One kill set per session: failure, then drops or lengthened partials." }
   ],
@@ -34,91 +34,103 @@ window.DATA = {
     {
       dow: [1], id: "mon", title: "Push · Boss Fight", time: "~50 min", kind: "iron",
       anchors: [
-        { name: "Bench Press (Barbell)", rule: "Top set of 5. +2.5 every week the 5 land. Current target lives in the Hevy routine." },
-        { name: "Incline Smith", rule: "Rep chase. Beat the number in the routine note. At 15, the bar moves up automatically." }
+        { name: "Bench Press (Barbell)", rule: "Top set of 5, heavy in BOTH weeks. +2.5 every week the 5 land. Target lives in the Hevy routine." },
+        { name: "Incline Smith", rule: "A week: rep-chase anchor. B week: 3 x 12 volume. At 15 the bar moves up automatically." }
       ],
       menuA: [
-        "Seated Shoulder Press (Smith) 2 x 8-12",
-        "Lateral Raise (DB) 2 x 12-15"
+        "Heavy backoffs 2 x 6",
+        "Seated Shoulder Press (Smith) 2 x 8-10",
+        "Single-Arm Cable Lateral 2 x 12",
+        "Engine flush: 10-12 min easy stairs"
       ],
       menuB: [
-        "Shoulder Press (DB) 2 x 8-12 · PR is 27.5 x 8",
-        "Lateral Raise (Cable) 2 x 12-15"
+        "Volume backoffs 3 x 8",
+        "Standing Military Press 3 x 10-12",
+        "Cable Fly Crossovers 2 x 15 · Laterals 3 x 15",
+        "Engine flush: 10-12 min easy stairs"
       ],
-      killA: "Chest Press machine: one set to failure, double drop.",
+      killA: "Chest Press machine: failure, then double drop.",
       killB: "Cable Fly Crossovers: failure, then lengthened partials."
     },
     {
       dow: [2], id: "tue", title: "Strength + Engine", time: "~60 min", kind: "iron",
       anchors: [
-        { name: "Deadlift (Barbell)", rule: "Top set of 5. +5 every week it lands clean. Ramp in the routine." },
-        { name: "Stair Scoreboard", rule: "15 minutes. Count floors. Beat last week." }
+        { name: "Deadlift (Barbell)", rule: "Top set of 5, heavy in BOTH weeks. +5 every clean week. Ramp in the routine." },
+        { name: "STAIR 15:00 MAX FLOORS", rule: "Fixed clock, floors are the score. Push. Beat last week." }
       ],
       menuA: [
-        "Leg Press 3 x 12 · knee insurance",
+        "Leg Press 3 x 12 heavy · knee insurance",
         "Dead Hang 2 x max"
       ],
       menuB: [
-        "Leg Press 3 x 12 · knee insurance",
+        "Romanian Deadlift 2 x 10 · hinge volume",
+        "Leg Press 3 x 15 lighter",
         "Dead Hang 2 x max"
       ],
-      killA: "The stair 15 is the kill. All of it.",
-      killB: "The stair 15 is the kill. All of it."
+      killA: "The stair 15 is the kill. Floors are the score.",
+      killB: "The stair 15 is the kill. Floors are the score."
     },
     {
-      dow: [3], id: "wed", title: "Pull", time: "~45-50 min", kind: "iron",
+      dow: [3], id: "wed", title: "Pull · Back Day 1", time: "~50 min", kind: "iron",
       anchors: [
-        { name: "A weeks: Pull-Up total", rule: "4 sets bodyweight. Sum the reps. Beat the total in the routine note." },
-        { name: "B weeks: Reverse-Grip Pulldown", rule: "Top set. Beat the number in the routine note." }
+        { name: "A weeks: Pull-Up total", rule: "4 working sets, sum the reps, beat the total in the routine note." },
+        { name: "B weeks: Reverse-Grip Pulldown", rule: "Top set stays heavy. Beat the number in the routine note." }
       ],
       menuA: [
-        "Seated Row (Machine) 85 / 80 / 80 x 10 · beat your 85 x 10",
-        "Close-Grip Pulldown 2 x 8 @ 60 · your 77-session favorite",
-        "Straight-Arm Pulldown 2 x 13-15",
-        "Preacher Curl (Machine) 2 x 8 @ 20"
+        "Seated Row (Machine) 85/80/80 x 10 · beat 85 x 10",
+        "Close-Grip Pulldown 2 x 8 @ 60",
+        "Straight-Arm Pulldown 2 x 13-15 · Preacher Curl (Machine) 2 x 8",
+        "Engine flush: 10-12 min easy stairs"
       ],
       menuB: [
-        "Bent Over Row (Barbell) 3 x 6-10 · start 45-50",
-        "Reverse Fly Single Arm (Cable) 2 x 12-15",
-        "Seated Incline Curl (DB) 2 x 8-12"
+        "V-Grip Cable Row 3 x 12 · your 58-session favorite",
+        "Lat Pulldown 2 x 12",
+        "Reverse Fly 2 x 15 · Reverse Single-Arm Curl 2 x 12",
+        "Engine flush: 10-12 min easy stairs"
       ],
       killA: "Assisted Pull-Up @ 35: failure, then lengthened partials.",
       killB: "Band-Assisted Pull-Up: failure, then lengthened partials."
     },
     {
-      dow: [4], id: "thu", title: "Delts + Upper Chest", time: "~45 min", kind: "iron",
+      dow: [4], id: "thu", title: "Delts + Chest", time: "~45-50 min", kind: "iron",
       anchors: [
-        { name: "Incline DB Press", rule: "Rep chase. At 12 reps the dumbbells move up automatically. The wall: 35 x 6." }
+        { name: "Incline DB Press", rule: "Ramped opener, heavy in BOTH weeks. At 12 reps the dumbbells move up automatically. The wall: 35 x 6." }
       ],
       menuA: [
-        "Chest Fly (Machine) 2 x 10-15",
-        "Lateral Raise (Cable) 3 x 12-20 · side delts, lever #1",
-        "Triceps Pushdown 2 x 10-15"
+        "Chest Press (Machine) 2 x 10 heavy",
+        "Single-Arm Cable Lateral 3 x 12 · lever #1",
+        "Rear Delt Fly 2 x 15 · your addition, permanent",
+        "Chest Fly 2 x 12 · Engine flush 10-12 min"
       ],
       menuB: [
-        "Single-Arm Cable Crossover 2 x 12-15",
-        "Lateral Raise (DB) 3 x 12-20 · side delts, lever #1",
-        "Single-Arm Pushdown 2 x 10-15"
+        "Single-Arm Crossover 2 x 15 · Laterals (DB) 3 x 18",
+        "Rear Delt Fly 2 x 18 · your addition, permanent",
+        "Seated Shoulder Press (Smith) 2 x 13",
+        "Engine flush: 10-12 min easy stairs"
       ],
-      killA: "Lateral-raise mechanical drop: cable, lighter, partials.",
+      killA: "Lateral-raise mechanical drop: lighter, partials.",
       killB: "Chest Fly: failure, then lengthened partials."
     },
     {
-      dow: [5], id: "fri", title: "Arms + Engine", time: "~45 min", kind: "iron",
+      dow: [5], id: "fri", title: "Back + Arms · Back Day 2", time: "~50 min", kind: "iron",
       anchors: [],
       menuA: [
-        "Hammer Curl + Pushdown superset, 3 rounds",
-        "Preacher Curl (Barbell) 2 x 8-12",
-        "Finisher: 20 min easy Z2 stairs"
+        "Lat Pulldown heavy 3 x 8-10 · 67 lifetime sessions",
+        "Inverted Row 3 x 8 · 49 lifetime sessions",
+        "BICEPS block: cable curl + hammer curl, 2 x each",
+        "THEN triceps block: pushdowns, 2 x each. No supersets.",
+        "Engine flush: 10-12 min easy stairs"
       ],
       menuB: [
-        "Preacher Curl + Single-Arm Pushdown superset, 3 rounds",
-        "Seated Incline Curl (DB) 2 x 8-12",
-        "Finisher: 20 min easy Z2 stairs"
+        "Straight-Arm Pulldown 3 x 15 · your #1, 93 sessions",
+        "Reverse-Grip Pulldown 3 x 12",
+        "BICEPS block: preacher + reverse single-arm curl",
+        "THEN triceps block: single-arm + pushdown, high reps",
+        "Engine flush: 10-12 min easy stairs"
       ],
-      killA: "Single-arm pushdown: failure, then drop and burn it out.",
+      killA: "Cable bicep curl: failure, then drop and burn it out.",
       killB: "Triceps pushdown: failure, then drop and burn it out.",
-      note: "If bench AND deadlift top sets fall two weeks straight, this day becomes easy Z2 until they climb. The log decides."
+      note: "Recovery valve: bench AND deadlift top sets falling two straight weeks turns this day into easy Z2. The log decides."
     },
     {
       dow: [6], id: "sat", title: "Optional 6th · Long Engine", time: "45-60 min", kind: "bonus",
