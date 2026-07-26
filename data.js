@@ -44,10 +44,10 @@ window.DATA = {
         "Engine flush: 10-12 min easy stairs"
       ],
       menuB: [
+        "OPENER: 10-12 min easy stairs, then the iron",
         "PUMP backoffs: 40 kg x 15-20, three sets",
         "Incline Smith 3 x 18-20 @ 35 · Military Press 2 x 15",
-        "Crossovers 2 x 20 · Laterals 3 x 20",
-        "Engine flush: 10-12 min easy stairs"
+        "Crossovers 2 x 20 · Laterals 3 x 20"
       ],
       killA: "Chest Press machine: failure, then double drop.",
       killB: "Cable Fly Crossovers: failure, then lengthened partials."
@@ -83,10 +83,10 @@ window.DATA = {
         "Engine flush: 10-12 min easy stairs"
       ],
       menuB: [
+        "OPENER: 10-12 min easy stairs, then the iron",
         "V-Grip Cable Row 3 x 18-20 @ 45 · your 58-session favorite",
         "Lat Pulldown 2 x 18-20 @ 40",
-        "Reverse Fly 2 x 20 · Reverse Single-Arm Curl 2 x 18",
-        "Engine flush: 10-12 min easy stairs"
+        "Reverse Fly 2 x 20 · Reverse Single-Arm Curl 2 x 18"
       ],
       killA: "Assisted Pull-Up @ 35: failure, then lengthened partials.",
       killB: "Band-Assisted Pull-Up: failure, then lengthened partials."
@@ -103,10 +103,10 @@ window.DATA = {
         "Chest Fly 2 x 12 · Engine flush 10-12 min"
       ],
       menuB: [
+        "OPENER: 10-12 min easy stairs, then the iron",
         "Single-Arm Crossover 2 x 20 · Laterals (DB) 3 x 20",
         "Rear Delt Fly 2 x 20 · your addition, permanent",
-        "Seated Shoulder Press (Smith) 2 x 18-20 @ 20",
-        "Engine flush: 10-12 min easy stairs"
+        "Seated Shoulder Press (Smith) 2 x 18-20 @ 20"
       ],
       killA: "Lateral-raise mechanical drop: lighter, partials.",
       killB: "Chest Fly: failure, then lengthened partials."
@@ -122,11 +122,11 @@ window.DATA = {
         "Engine flush: 10-12 min easy stairs"
       ],
       menuB: [
+        "OPENER: 10-12 min easy stairs, then the iron",
         "Straight-Arm Pulldown 3 x 18-20 @ 20 · your #1, 93 sessions",
         "Reverse-Grip Pulldown 3 x 15-18 @ 45",
         "BICEPS block 15-20s, THEN triceps block 20-25s",
-        "Kill set at 25+ reps. Burn it all down.",
-        "Engine flush: 10-12 min easy stairs"
+        "Kill set at 25+ reps. Burn it all down."
       ],
       killA: "Cable bicep curl: failure, then drop and burn it out.",
       killB: "Triceps pushdown: failure, then drop and burn it out.",
