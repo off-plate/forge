@@ -38,10 +38,10 @@ window.DATA = {
         { name: "Incline Smith", rule: "A week: rep-chase anchor. B week: 3 x 12 volume. At 15 the bar moves up automatically." }
       ],
       menuA: [
+        "OPENER: 10:00 stairs, ~40 floors easy",
         "Heavy backoffs 2 x 6",
         "Seated Shoulder Press (Smith) 2 x 8-10",
-        "Single-Arm Cable Lateral 2 x 12",
-        "Engine flush: 10-12 min easy stairs"
+        "Single-Arm Cable Lateral 2 x 12"
       ],
       menuB: [
         "OPENER: 10:00 stairs, ~40 floors easy, then the iron",
@@ -55,8 +55,8 @@ window.DATA = {
     {
       dow: [2], id: "tue", title: "Strength + Engine", time: "~60 min", kind: "iron",
       anchors: [
-        { name: "Deadlift (Barbell)", rule: "Top set of 5, heavy in BOTH weeks. +5 every clean week. Ramp in the routine." },
-        { name: "STAIR 15:00 MAX FLOORS", rule: "Fixed clock, floors are the score. Push. Beat last week." }
+        { name: "STAIR 15:00 MAX FLOORS — OPENS THE DAY", rule: "Fixed clock, floors are the score. Opening target 75; your first run resets it." },
+        { name: "Deadlift (Barbell)", rule: "3 full minutes rest after the stairs, then ramp and pull. Top set of 5, +5 every clean week." }
       ],
       menuA: [
         "Leg Press 3 x 12 heavy · knee insurance",
@@ -67,8 +67,8 @@ window.DATA = {
         "Leg Press 3 x 20 @ 80 · quads on fire before the stairs",
         "Dead Hang 2 x max"
       ],
-      killA: "The stair 15 is the kill. Floors are the score.",
-      killB: "The stair 15 is the kill. Floors are the score."
+      killA: "The stair 15 opens the day. Floors are the score.",
+      killB: "The stair 15 opens the day. Floors are the score."
     },
     {
       dow: [3], id: "wed", title: "Pull · Back Day 1", time: "~50 min", kind: "iron",
@@ -77,10 +77,10 @@ window.DATA = {
         { name: "B weeks: Reverse-Grip Pulldown", rule: "Top set stays heavy. Beat the number in the routine note." }
       ],
       menuA: [
+        "OPENER: 10:00 stairs, ~40 floors easy",
         "Seated Row (Machine) 85/80/80 x 10 · beat 85 x 10",
         "Close-Grip Pulldown 2 x 8 @ 60",
-        "Straight-Arm Pulldown 2 x 13-15 · Preacher Curl (Machine) 2 x 8",
-        "Engine flush: 10-12 min easy stairs"
+        "Straight-Arm Pulldown 2 x 13-15 · Preacher Curl (Machine) 2 x 8"
       ],
       menuB: [
         "OPENER: 10-12 min easy stairs, then the iron",
@@ -97,10 +97,10 @@ window.DATA = {
         { name: "Incline DB Press", rule: "Ramped opener, heavy in BOTH weeks. At 12 reps the dumbbells move up automatically. The wall: 35 x 6." }
       ],
       menuA: [
+        "OPENER: 10:00 stairs, ~40 floors easy",
         "Chest Press (Machine) 2 x 10 heavy",
-        "Single-Arm Cable Lateral 3 x 12 · lever #1",
-        "Rear Delt Fly 2 x 15 · your addition, permanent",
-        "Chest Fly 2 x 12 · Engine flush 10-12 min"
+        "Single-Arm Cable Lateral 3 x 12 + kill drop · lever #1",
+        "Rear Delt Fly 2 x 15 · Chest Fly 2 x 12"
       ],
       menuB: [
         "OPENER: 10-12 min easy stairs, then the iron",
@@ -115,11 +115,10 @@ window.DATA = {
       dow: [5], id: "fri", title: "Back + Arms · Back Day 2", time: "~50 min", kind: "iron",
       anchors: [],
       menuA: [
+        "OPENER: 10:00 stairs, ~40 floors easy",
         "Lat Pulldown heavy 3 x 8-10 · 67 lifetime sessions",
         "Inverted Row 3 x 8 · 49 lifetime sessions",
-        "BICEPS block: cable curl + hammer curl, 2 x each",
-        "THEN triceps block: pushdowns, 2 x each. No supersets.",
-        "Engine flush: 10-12 min easy stairs"
+        "BICEPS block (kill on last curl set), THEN triceps block"
       ],
       menuB: [
         "OPENER: 10-12 min easy stairs, then the iron",
