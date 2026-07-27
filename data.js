@@ -44,13 +44,13 @@ window.DATA = {
         "Engine flush: 10-12 min easy stairs"
       ],
       menuB: [
-        "OPENER: 10-12 min easy stairs, then the iron",
-        "PUMP backoffs: 40 kg x 15-20, three sets",
-        "Incline Smith 3 x 18-20 @ 35 · Military Press 2 x 15",
-        "Crossovers 2 x 20 · Laterals 3 x 20"
+        "OPENER: 10:00 stairs, ~40 floors easy, then the iron",
+        "PUMP backoffs 40 x 15, 40 x 12",
+        "Incline Smith 30 x 15, then beat 18 at 35 · Military Press 2 x 10",
+        "Lateral (DB) 10 x 12, 7.5 x 15 · built from your Jul 27 session"
       ],
       killA: "Chest Press machine: failure, then double drop.",
-      killB: "Cable Fly Crossovers: failure, then lengthened partials."
+      killB: "Chest Fly last set @ 15: failure, then lengthened partials."
     },
     {
       dow: [2], id: "tue", title: "Strength + Engine", time: "~60 min", kind: "iron",
