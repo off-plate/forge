@@ -15,7 +15,7 @@ window.DATA = {
     end: "2026-08-16",
     testDay: "2026-08-15",
     vacation: "2026-08-20",
-    generated: "2026-07-27",
+    generated: "2026-07-28",
     sessionsTarget: 20,
     floorPerWeek: 5
   },
@@ -154,7 +154,7 @@ window.DATA = {
   goals: [
     { name: "Bench e1RM", start: 67, current: 72, goal: 76, unit: "kg", source: "hevy",
       note: "Monday top set of 5, starts 57.5, +2.5 every clean week. Block target 65 x 5. The 100 lives on the far side of this block." },
-    { name: "Deadlift e1RM", start: 143, current: 143, goal: 175, unit: "kg", source: "hevy",
+    { name: "Deadlift e1RM", start: 143, current: 148, goal: 175, unit: "kg", source: "hevy",
       note: "Saturday top set of 5, starts 135, +5 every clean week. Block target 150 x 5. All-time best is 150 x 2." },
     { name: "Incline Smith reps @ 50", start: 13, current: 15, goal: 15, unit: "reps", source: "hevy",
       note: "Your 77-session favorite. Beat 13. At 15 the bar gets heavier." },
@@ -164,7 +164,7 @@ window.DATA = {
       note: "A-week anchor. Four sets, sum the reps, beat the total." },
     { name: "Stair 15:00 floors", start: 0, current: 0, goal: 0, unit: "floors", source: "manual",
       note: "Week 1 sets the baseline. Then beat it weekly. Test day target: baseline plus 20 percent." },
-    { name: "Sessions logged", start: 0, current: 5, goal: 20, unit: "sessions", source: "hevy",
+    { name: "Sessions logged", start: 0, current: 6, goal: 20, unit: "sessions", source: "hevy",
       note: "The adherence score. Five a week, Mon to Fri. 18 of 20 is a pass. This is the real test." },
     { name: "Bodyweight", start: 96, current: 96, goal: 91, unit: "kg", source: "manual",
       note: "Byproduct, not target. 2400 eaten, cut capped at 0.6 per week. Vacation marker: 90-91." }
