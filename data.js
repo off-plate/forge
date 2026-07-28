@@ -63,9 +63,10 @@ window.DATA = {
         "Dead Hang 2 x max"
       ],
       menuB: [
-        "Romanian Deadlift 2 x 12-15 light",
-        "Leg Press 3 x 20 @ 80 · quads on fire before the stairs",
-        "Dead Hang 2 x max"
+        "Bent Over Row 3 x 15 @ 35 · same bar as the pull",
+        "Close-Grip Pulldown 2 x 15 @ 50",
+        "Hammer Curl 2 x 15 · the little bit of biceps",
+        "Dead Hang 2 x max to close"
       ],
       killA: "The stair 15 opens the day. Floors are the score.",
       killB: "The stair 15 opens the day. Floors are the score."
