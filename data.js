@@ -41,13 +41,15 @@ window.DATA = {
         "OPENER: 10:00 stairs, ~40 floors easy",
         "Heavy backoffs 2 x 6",
         "Seated Shoulder Press (Smith) 2 x 8-10",
-        "Single-Arm Cable Lateral 2 x 12"
+        "Single-Arm Cable Lateral 2 x 12",
+        "ABS to close: rope crunch 2 x 15 + knee raises 2 x 12"
       ],
       menuB: [
         "OPENER: 10:00 stairs, ~40 floors easy, then the iron",
         "PUMP backoffs 40 x 15, 40 x 12",
         "Incline Smith 30 x 15, then beat 18 at 35 · Military Press 2 x 10",
-        "Lateral (DB) 10 x 12, 7.5 x 15 · built from your Jul 27 session"
+        "Lateral (DB) 10 x 12, 7.5 x 15",
+        "ABS to close: rope crunch 2 x 15 + knee raises 2 x 12"
       ],
       killA: "Chest Press machine: failure, then double drop.",
       killB: "Chest Fly last set @ 15: failure, then lengthened partials."
@@ -101,13 +103,15 @@ window.DATA = {
         "OPENER: 10:00 stairs, ~40 floors easy",
         "Chest Press (Machine) 2 x 10 heavy",
         "Single-Arm Cable Lateral 3 x 12 + kill drop · lever #1",
-        "Rear Delt Fly 2 x 15 · Chest Fly 2 x 12"
+        "Rear Delt Fly 2 x 15 · Chest Fly 2 x 12",
+        "ABS to close: rope crunch 2 x 15 + knee raises 2 x 12"
       ],
       menuB: [
         "OPENER: 10-12 min easy stairs, then the iron",
         "Single-Arm Crossover 2 x 20 · Laterals (DB) 3 x 20",
         "Rear Delt Fly 2 x 20 · your addition, permanent",
-        "Seated Shoulder Press (Smith) 2 x 18-20 @ 20"
+        "Seated Shoulder Press (Smith) 2 x 18-20 @ 20",
+        "ABS to close: rope crunch 2 x 15 + knee raises 2 x 12"
       ],
       killA: "Lateral-raise mechanical drop: lighter, partials.",
       killB: "Chest Fly: failure, then lengthened partials."
