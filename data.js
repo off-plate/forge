@@ -15,7 +15,7 @@ window.DATA = {
     end: "2026-08-16",
     testDay: "2026-08-15",
     vacation: "2026-08-20",
-    generated: "2026-08-01",
+    generated: "2026-08-02",
     sessionsTarget: 20,
     floorPerWeek: 5
   },
